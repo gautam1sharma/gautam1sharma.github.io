@@ -26,83 +26,83 @@
             position: relative;
             overflow-x: auto;  /* Added overflow-x to allow horizontal scrolling if needed */
             padding: 2rem 1rem;  /* Added padding for better spacing */
-        }
-        
-        .array-element {
+        }   border: 1px dashed #ccc;
+            border-radius: 8px;
+        .array-element {dth: thin;
             min-width: 50px;  /* Changed width to min-width */
             height: 50px;
             margin: 5px;
-            display: flex;
+            display: flex;-webkit-scrollbar {
             align-items: center;
             justify-content: center;
             background-color: #64748b;  /* Changed to match new default color */
-            color: white;
-            font-weight: bold;
+            color: white;:-webkit-scrollbar-thumb {
+            font-weight: bold;var(--accent-color);
             border-radius: 5px;
             transition: all 0.3s ease;
             position: relative;
-        }
-        
-        .array-element:after {
+        }array-element {
+            min-width: 40px;
+        .array-element:after { var(--total-elements, 10));
             content: attr(data-index);
             position: absolute;
             bottom: -20px;
             font-size: 12px;
             color: var(--text-color);
-        }
-        
-        .controls {
-            display: flex;
+        }   justify-content: center;
+            background-color: #64748b;
+        .controls {white;
+            display: flex;old;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-wrap: wrap;0.3s ease;
+            gap: 1rem;relative;
             margin-bottom: 1rem;
         }
-        
-        .controls-group {
-            display: flex;
+        .array-element:after {
+        .controls-group {(data-index);
+            display: flex;lute;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.5rem;2px;
+        }   color: var(--text-color);
         }
-        
         .code-container {
             background-color: #1e1e1e;
             border-radius: 8px;
-            padding: 1rem;
-            margin: 2rem 0;
+            padding: 1rem;t: center;
+            margin: 2rem 0;;
             overflow-x: auto;
+        }   margin-bottom: 1rem;
         }
-        
         .code-container pre {
             color: #d4d4d4;
             font-family: 'Consolas', 'Monaco', monospace;
-            line-height: 1.5;
+            line-height: 1.5;er;
+        }   gap: 0.5rem;
         }
-        
         .current-line {
             background-color: rgba(86, 156, 214, 0.2);
-            display: block;
-        }
-        
-        .legend {
-            display: flex;
+            display: block;r: #1e1e1e;
+        }   border-radius: 8px;
+            padding: 1rem;
+        .legend {n: 2rem 0;
+            display: flex;to;
             justify-content: center;
             gap: 2rem;
-            margin: 1rem 0;
-        }
-        
-        .legend-item {
+            margin: 1rem 0; {
+        }   color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', monospace;
+        .legend-item {t: 1.5;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-        
+        }   background-color: rgba(86, 156, 214, 0.2);
+            display: block;
         .legend-color {
             width: 20px;
             height: 20px;
             border-radius: 4px;
-        }
-        
+        }   justify-content: center;
+            gap: 2rem;
         .current { background-color: #facc15; }
         .low { background-color: #ef4444; }
         .mid { background-color: #8b5cf6; }
@@ -110,7 +110,7 @@
         .found { background-color: #22c55e; }
         .not-found { background-color: #f87171; }
         .default { background-color: #64748b; } /* Changed from #3b82f6 to a darker shade */
-        
+        }
         .search-info {
             margin: 1rem 0;
             padding: 1rem;
@@ -118,26 +118,26 @@
             border-radius: 5px;
             text-align: center;
             min-height: 80px;
-        }
-        
-        @media (max-width: 768px) {
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
+        }current { background-color: #facc15; }
+        .low { background-color: #ef4444; }
+        @media (max-width: 768px) {b5cf6; }
+            .controls {und-color: #3b82f6; }
+                flex-direction: column;55e; }
+                align-items: center;r: #f87171; }
+            }ult { background-color: #64748b; }
             
             .array-element {
                 width: 40px;
                 height: 40px;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
+                font-size: 0.9rem;--card-bg);
+            }order-radius: 5px;
+        }   text-align: center;
+    </style>min-height: 80px;
+</head> }
+<body>  
+    <header>ia (max-width: 768px) {
         <div class="container">
-            <nav class="navbar">
+            <nav class="navbar">column;
                 <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
                 <ul class="nav-menu">
                     <li><a href="../../index.html" class="nav-link">Home</a></li>
@@ -151,113 +151,113 @@
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="section" style="padding-top: 120px;">
-            <div class="container">
-                <h1 class="section-title">Binary Search Visualization</h1>
-                
+            </nav>="container">
+        </div>av class="navbar">
+    </header>   <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+                <ul class="nav-menu">
+    <main>          <li><a href="../../index.html" class="nav-link">Home</a></li>
+        <section class="section" style="padding-top: 120px;">s="nav-link">About</a></li>
+            <div class="container">/../index.html#projects" class="nav-link">Projects</a></li>
+                <h1 class="section-title">Binary Search Visualization</h1>nav-link">Problem Solving</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
                 <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
-                    <p>
+                    <p>ass="hamburger">
                         Binary Search is an efficient algorithm for finding a target value within a sorted array.
                         It works by repeatedly dividing the search interval in half, significantly reducing the number of comparisons needed.
-                    </p>
+                    </p>n class="bar"></span>
                 </div>
-                
+                v>
                 <div class="visualization-container">
                     <div class="array-size-container">
                         <label for="array-size">Array Size:</label>
                         <input type="number" id="array-size" min="5" max="20" value="10" class="btn">
                         <button id="update-size-btn" class="btn">Update Size</button>
-                    </div>
-                    
+                    </div>ntainer">
+                    class="section-title">Binary Search Visualization</h1>
                     <div class="controls">
                         <button id="generate-btn" class="btn">Generate New Sorted Array</button>
                         <div class="controls-group">
-                            <input type="number" id="search-value" placeholder="Search value" class="btn">
-                            <button id="search-btn" class="btn">Search</button>
+                            <input type="number" id="search-value" placeholder="Search value" class="btn"> array.
+                            <button id="search-btn" class="btn">Search</button>half, significantly reducing the number of comparisons needed.
                         </div>
                         <button id="reset-btn" class="btn">Reset</button>
                         <select id="speed-select" class="btn">
                             <option value="1000">Slow</option>
                             <option value="500" selected>Medium</option>
-                            <option value="200">Fast</option>
-                        </select>
+                            <option value="200">Fast</option>label>
+                        </select>pe="number" id="array-size" min="5" max="20" value="10" class="btn">
+                    </div>utton id="update-size-btn" class="btn">Update Size</button>
                     </div>
-                    
                     <div class="legend">
                         <div class="legend-item">
-                            <div class="legend-color default"></div>
+                            <div class="legend-color default"></div>te New Sorted Array</button>
                             <span>Not Checked</span>
-                        </div>
-                        <div class="legend-item">
+                        </div>nput type="number" id="search-value" placeholder="Search value" class="btn">
+                        <div class="legend-item">n" class="btn">Search</button>
                             <div class="legend-color current"></div>
-                            <span>Current</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color low"></div>
-                            <span>Low</span>
-                        </div>
+                            <span>Current</span>lass="btn">Reset</button>
+                        </div>t id="speed-select" class="btn">
+                        <div class="legend-item">Slow</option>
+                            <div class="legend-color low"></div>/option>
+                            <span>Low</span>00">Fast</option>
+                        </div>ct>
                         <div class="legend-item">
                             <div class="legend-color mid"></div>
                             <span>Mid</span>
-                        </div>
-                        <div class="legend-item">
+                        </div>lass="legend-item">
+                        <div class="legend-item">lor default"></div>
                             <div class="legend-color high"></div>
                             <span>High</span>
-                        </div>
-                        <div class="legend-item">
+                        </div>lass="legend-item">
+                        <div class="legend-item">lor current"></div>
                             <div class="legend-color found"></div>
                             <span>Found</span>
-                        </div>
-                    </div>
-                    
+                        </div>lass="legend-item">
+                    </div>  <div class="legend-color low"></div>
+                            <span>Low</span>
                     <div class="search-info" id="search-info">
                         Generate a sorted array and enter a number to search for.
-                    </div>
-                    
+                    </div>  <div class="legend-color mid"></div>
+                            <span>Mid</span>
                     <div class="array-container" id="array-container"></div>
-                    
-                    <div class="code-container">
+                        <div class="legend-item">
+                    <div class="code-container">olor high"></div>
                         <pre id="code-display">
 function binarySearch(arr, target) {
-    let low = 0;
-    let high = arr.length - 1;
-    
-    while (low <= high) {
+    let low = 0;        <div class="legend-item">
+    let high = arr.length - 1;iv class="legend-color found"></div>
+                            <span>Found</span>
+    while (low <= high) {/div>
         // Find the middle index
         const mid = Math.floor((low + high) / 2);
-        
-        // If target is found at the middle
+                    <div class="search-info" id="search-info">
+        // If target is found at the middlerray and enter a number to search for.
         if (arr[mid] === target) {
             return mid;
-        }
-        
+        }           <div class="array-container" id="array-container"></div>
+                    
         // If target is greater, ignore the left half
-        if (arr[mid] < target) {
-            low = mid + 1;
-        } 
+        if (arr[mid] < target) {"code-display">
+            low = mid + 1; target) {
+        } w = 0;
         // If target is smaller, ignore the right half
         else {
             high = mid - 1;
-        }
-    }
-    
-    // Target is not in the array
-    return -1;
-}</pre>
+        }/ Find the middle index
+    }   const mid = Math.floor((low + high) / 2);
+        
+    // Target is not in the arraythe middle
+    return -1;r[mid] === target) {
+}</pre>     return mid;
                     </div>
                 </div>
-                
+                rget is greater, ignore the left half
                 <div class="algorithm-details">
                     <h2>How Binary Search Works</h2>
                     <p>
                         Binary Search is a divide-and-conquer algorithm that finds the position of a target value
                         within a sorted array. It works by repeatedly dividing the search interval in half.
-                    </p>
+                    </p> 1;
                     
                     <h3>Algorithm Steps:</h3>
                     <ol style="margin-left: 2rem; margin-bottom: 2rem;">
@@ -267,52 +267,52 @@ function binarySearch(arr, target) {
                         <li>If the target value is greater than the middle element, continue the search in the upper half.</li>
                         <li>Repeat steps 2-4 until the element is found or the subarray is empty.</li>
                     </ol>
-                    
+                     class="algorithm-details">
                     <h3>Time and Space Complexity:</h3>
                     <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
-                        <li><strong>Time Complexity:</strong>
-                            <ul>
+                        <li><strong>Time Complexity:</strong> algorithm that finds the position of a target value
+                            <ul> sorted array. It works by repeatedly dividing the search interval in half.
                                 <li>Worst Case: O(log n) - The target element is not in the array or appears at the end of the search.</li>
                                 <li>Average Case: O(log n)</li>
                                 <li>Best Case: O(1) - The target element is at the middle of the array.</li>
-                            </ul>
-                        </li>
+                            </ul>rgin-left: 2rem; margin-bottom: 2rem;">
+                        </li>tart with the middle element of the sorted array.</li>
                         <li><strong>Space Complexity:</strong> O(1) - Binary Search uses a constant amount of extra space.</li>
-                    </ul>
-                    
-                    <h3>Advantages and Disadvantages:</h3>
+                    </ul>li>If the target value is less than the middle element, continue the search in the lower half.</li>
+                        <li>If the target value is greater than the middle element, continue the search in the upper half.</li>
+                    <h3>Advantages and Disadvantages:</h3>ment is found or the subarray is empty.</li>
                     <h4>Advantages:</h4>
                     <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
                         <li>Very efficient for large datasets</li>
                         <li>Logarithmic time complexity makes it much faster than linear search</li>
-                        <li>Uses minimal memory</li>
-                    </ul>
-                    
-                    <h4>Disadvantages:</h4>
-                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Uses minimal memory</li></strong>
+                    </ul>   <ul>
+                                <li>Worst Case: O(log n) - The target element is not in the array or appears at the end of the search.</li>
+                    <h4>Disadvantages:</h4> Case: O(log n)</li>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">e array.</li>
                         <li>Array must be sorted beforehand</li>
                         <li>Only works with sequential data structures that allow random access (like arrays)</li>
-                        <li>Not efficient for small datasets compared to linear search</li>
+                        <li>Not efficient for small datasets compared to linear search</li>constant amount of extra space.</li>
                     </ul>
                     
                     <div style="text-align: center; margin-top: 3rem;">
                         <a href="../index.html" class="btn">Back to Algorithms</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
+                    </div>yle="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                </div>  <li>Very efficient for large datasets</li>
+            </div>      <li>Logarithmic time complexity makes it much faster than linear search</li>
+        </section>      <li>Uses minimal memory</li>
+    </main>         </ul>
+                    
+    <footer>        <h4>Disadvantages:</h4>
+        <div class="container">list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
             <p>&copy; <span id="currentYear">2025</span> Gautam Sharma. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Update copyright year
+        </div>          <li>Only works with sequential data structures that allow random access (like arrays)</li>
+    </footer>           <li>Not efficient for small datasets compared to linear search</li>
+                    </ul>
+    <script>        
+        // Update copyright yeartext-align: center; margin-top: 3rem;">
         document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
+                    </div>
         // DOM Elements
         const arrayContainer = document.getElementById('array-container');
         const generateBtn = document.getElementById('generate-btn');
@@ -320,87 +320,100 @@ function binarySearch(arr, target) {
         const resetBtn = document.getElementById('reset-btn');
         const speedSelect = document.getElementById('speed-select');
         const codeDisplay = document.getElementById('code-display');
-        const searchInfo = document.getElementById('search-info');
+        const searchInfo = document.getElementById('search-info');arma. All rights reserved.</p>
         const searchValueInput = document.getElementById('search-value');
         const arraySizeInput = document.getElementById('array-size');
         const updateSizeBtn = document.getElementById('update-size-btn');
-        
-        // Configuration
-        let ARRAY_SIZE = parseInt(arraySizeInput.value);
+        ipt>
+        // Configurationght year
+        let ARRAY_SIZE = parseInt(arraySizeInput.value);nt = new Date().getFullYear();
         const MIN_VALUE = 1;
         const MAX_VALUE = 100;
-        let array = [];
-        let arrayElements = [];
-        let searching = false;
-        let delay = parseInt(speedSelect.value);
-        
-        // Create a new sorted random array
-        function generateArray() {
-            array = [];
-            
-            // Generate random numbers
+        let array = [];ainer = document.getElementById('array-container');
+        let arrayElements = [];ument.getElementById('generate-btn');
+        let searching = false;ment.getElementById('search-btn');
+        let delay = parseInt(speedSelect.value);('reset-btn');
+        const speedSelect = document.getElementById('speed-select');
+        // Create a new sorted random arraymentById('code-display');
+        function generateArray() {t.getElementById('search-info');
+            array = [];ueInput = document.getElementById('search-value');
+            t arraySizeInput = document.getElementById('array-size');
+            // Generate random numbers.getElementById('update-size-btn');
             for (let i = 0; i < ARRAY_SIZE; i++) {
                 let value = Math.floor(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
-                array.push(value);
-            }
-            
+                array.push(value);arraySizeInput.value);
+            } MIN_VALUE = 1;
+            t MAX_VALUE = 100;
             // Sort the array
             array.sort((a, b) => a - b);
-            
-            // Make sure all numbers are unique
+            searching = false;
+            // Make sure all numbers are unique;
             for (let i = 1; i < array.length; i++) {
                 if (array[i] === array[i - 1]) {
-                    array[i]++;
-                }
+                    array[i]++;) {
+                } = [];
             }
-            
-            displayArray();
-            searchInfo.textContent = "Array generated. Enter a number to search.";
-        }
-        
+            // Generate random numbers
+            displayArray(); i < ARRAY_SIZE; i++) {
+            searchInfo.textContent = "Array generated. Enter a number to search.";) + MIN_VALUE;
+        }       array.push(value);
+            }
         // Display the array
         function displayArray() {
             arrayContainer.innerHTML = '';
             arrayElements = [];
+            // Make sure all numbers are unique
+            // Set CSS variable for sizing elements
+            arrayContainer.style.setProperty('--total-elements', array.length);
             
             for (let i = 0; i < array.length; i++) {
                 const element = document.createElement('div');
                 element.classList.add('array-element');
                 element.textContent = array[i];
-                element.setAttribute('data-index', i);
+                element.setAttribute('data-index', i);generated. Enter a number to search.";
                 
                 arrayContainer.appendChild(element);
-                arrayElements.push(element);
+                arrayElements.push(element);// Display the array
             }
+'';
+            // Ensure the container is scrolled to the beginning
+            arrayContainer.scrollLeft = 0;
+            i++) {
+            // Add scroll hint if needed
+            if (arrayContainer.scrollWidth > arrayContainer.clientWidth) {ray-element');
+                searchInfo.textContent = "Array generated. Scroll horizontally if needed to see all elements. Enter a number to search.";
+            } else { element.setAttribute('data-index', i);
+                searchInfo.textContent = "Array generated. Enter a number to search.";    
+            }dChild(element);
         }
-        
-        // Reset the visualization
+           }
+        // Reset the visualization}
         function resetVisualization() {
             if (searching) return;
             
             arrayElements.forEach(element => {
                 element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');
                 // Reset to default color
-                element.style.backgroundColor = '';
+                element.style.backgroundColor = '';ve('current', 'low', 'mid', 'high', 'found', 'not-found');
             });
-            
+            style.backgroundColor = '';
             highlightCodeLine(null);
             searchInfo.textContent = "Array reset. Enter a number to search.";
-        }
-        
+        }ighlightCodeLine(null);
+        searchInfo.textContent = "Array reset. Enter a number to search.";
         // Highlight specific line in code display
         function highlightCodeLine(lineIndex) {
-            const codeLines = codeDisplay.innerHTML.split('\n');
-            let highlightedCode = '';
-            
+            const codeLines = codeDisplay.innerHTML.split('\n');// Highlight specific line in code display
+            let highlightedCode = ''; {
+            = codeDisplay.innerHTML.split('\n');
             for (let i = 0; i < codeLines.length; i++) {
-                if (i === lineIndex) {
-                    highlightedCode += `<span class="current-line">${codeLines[i]}</span>\n`;
+                if (i === lineIndex) {   
+                    highlightedCode += `<span class="current-line">${codeLines[i]}</span>\n`;    for (let i = 0; i < codeLines.length; i++) {
                 } else {
-                    highlightedCode += codeLines[i] + '\n';
+                    highlightedCode += codeLines[i] + '\n';urrent-line">${codeLines[i]}</span>\n`;
                 }
-            }
-            
+            }edCode += codeLines[i] + '\n';
+                }
             codeDisplay.innerHTML = highlightedCode;
         }
         
@@ -408,158 +421,173 @@ function binarySearch(arr, target) {
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        
+        return new Promise(resolve => setTimeout(resolve, ms));
         // Binary Search Algorithm with visualization
         async function visualizeBinarySearch(target) {
-            if (searching) return;
-            searching = true;
+            if (searching) return;inary Search Algorithm with visualization
+            searching = true;get) {
             
             // Reset any previous visualization
             arrayElements.forEach(element => {
-                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');
+                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');// Reset any previous visualization
             });
-            
+            ow', 'mid', 'high', 'found', 'not-found');
             highlightCodeLine(0); // function declaration
             await sleep(delay);
-            
+            highlightCodeLine(0); // function declaration
             let low = 0;
             let high = array.length - 1;
-            
-            highlightCodeLine(1); // let low = 0
+            let low = 0;
+            highlightCodeLine(1); // let low = 0th - 1;
             arrayElements[low].classList.add('low');
             searchInfo.textContent = `Setting low = ${low} (index of ${array[low]})`;
-            await sleep(delay);
-            
+            await sleep(delay);yElements[low].classList.add('low');
+            of ${array[low]})`;
             highlightCodeLine(2); // let high = arr.length - 1
             arrayElements[high].classList.add('high');
-            searchInfo.textContent = `Setting high = ${high} (index of ${array[high]})`;
-            await sleep(delay);
-            
+            searchInfo.textContent = `Setting high = ${high} (index of ${array[high]})`;/ let high = arr.length - 1
+            await sleep(delay);yElements[high].classList.add('high');
+            ex of ${array[high]})`;
             highlightCodeLine(4); // while loop
             await sleep(delay);
-            
-            while (low <= high) {
+            / while loop
+            while (low <= high) {t sleep(delay);
                 // Find the middle index
                 const mid = Math.floor((low + high) / 2);
                 
                 highlightCodeLine(6); // const mid = Math.floor...
                 arrayElements[mid].classList.add('mid');
                 searchInfo.textContent = `Calculating mid = floor((${low} + ${high}) / 2) = ${mid} (value: ${array[mid]})`;
-                await sleep(delay);
-                
+                await sleep(delay);sList.add('mid');
+                chInfo.textContent = `Calculating mid = floor((${low} + ${high}) / 2) = ${mid} (value: ${array[mid]})`;
                 highlightCodeLine(9); // if (arr[mid] === target)
                 arrayElements[mid].classList.add('current');
-                searchInfo.textContent = `Comparing: Is ${array[mid]} === ${target}?`;
-                await sleep(delay);
-                
+                searchInfo.textContent = `Comparing: Is ${array[mid]} === ${target}?`;ighlightCodeLine(9); // if (arr[mid] === target)
+                await sleep(delay);arrayElements[mid].classList.add('current');
+                mid]} === ${target}?`;
                 // If target is found at the middle
                 if (array[mid] === target) {
-                    highlightCodeLine(10); // return mid
+                    highlightCodeLine(10); // return mid// If target is found at the middle
                     arrayElements[mid].classList.remove('current', 'mid');
-                    arrayElements[mid].classList.add('found');
-                    searchInfo.textContent = `Found ${target} at index ${mid}! 🎉`;
-                    await sleep(delay);
-                    
+                    arrayElements[mid].classList.add('found'); // return mid
+                    searchInfo.textContent = `Found ${target} at index ${mid}! 🎉`;rrent', 'mid');
+                    await sleep(delay);arrayElements[mid].classList.add('found');
+                     ${target} at index ${mid}! 🎉`;
                     searching = false;
                     return mid;
                 }
-                
+                eturn mid;
                 highlightCodeLine(14); // if (arr[mid] < target)
                 searchInfo.textContent = `Is ${array[mid]} < ${target}?`;
-                await sleep(delay);
-                
+                await sleep(delay);14); // if (arr[mid] < target)
+                 = `Is ${array[mid]} < ${target}?`;
                 // If target is greater, ignore the left half
                 if (array[mid] < target) {
-                    highlightCodeLine(15); // low = mid + 1
+                    highlightCodeLine(15); // low = mid + 1f target is greater, ignore the left half
                     
-                    // Mark elements to be excluded
-                    for (let i = low; i <= mid; i++) {
+                    // Mark elements to be excluded5); // low = mid + 1
+                    for (let i = low; i <= mid; i++) {  
                         arrayElements[i].classList.remove('low', 'mid', 'high', 'current');
+                        arrayElements[i].classList.add('not-checked');r (let i = low; i <= mid; i++) {
+                    }ow', 'mid', 'high', 'current');
                         arrayElements[i].classList.add('not-checked');
-                    }
-                    
                     // Update low
                     low = mid + 1;
                     if (low <= high) {
                         arrayElements[low].classList.add('low');
-                    }
-                    
+                    }f (low <= high) {
+                        arrayElements[low].classList.add('low');
                     searchInfo.textContent = `${array[mid]} < ${target}, so update low = ${low}`;
                     await sleep(delay);
-                } 
+                } ontent = `${array[mid]} < ${target}, so update low = ${low}`;
                 // If target is smaller, ignore the right half
                 else {
-                    highlightCodeLine(19); // high = mid - 1
+                    highlightCodeLine(19); // high = mid - 1f target is smaller, ignore the right half
                     
-                    // Mark elements to be excluded
-                    for (let i = mid; i <= high; i++) {
-                        arrayElements[i].classList.remove('low', 'mid', 'high', 'current');
-                        arrayElements[i].classList.add('not-checked');
-                    }
+                    // Mark elements to be excluded9); // high = mid - 1
+                    for (let i = mid; i <= high; i++) {   
+                        arrayElements[i].classList.remove('low', 'mid', 'high', 'current');    // Mark elements to be excluded
+                        arrayElements[i].classList.add('not-checked');h; i++) {
+                    }classList.remove('low', 'mid', 'high', 'current');
                     
-                    // Update high
-                    high = mid - 1;
+                    // Update high   }
+                    high = mid - 1;    
                     if (high >= 0) {
                         arrayElements[high].classList.add('high');
-                    }
-                    
-                    searchInfo.textContent = `${array[mid]} > ${target}, so update high = ${high}`;
+                    }{
+                               arrayElements[high].classList.add('high');
+                    searchInfo.textContent = `${array[mid]} > ${target}, so update high = ${high}`;        }
                     await sleep(delay);
-                }
-                
-                // Clear current mid highlight
+                }te high = ${high}`;
+                (delay);
+                // Clear current mid highlight    }
                 if (arrayElements[mid]) {
-                    arrayElements[mid].classList.remove('current', 'mid');
-                }
-                
+                    arrayElements[mid].classList.remove('current', 'mid');ar current mid highlight
+                }       if (arrayElements[mid]) {
+                            arrayElements[mid].classList.remove('current', 'mid');
                 highlightCodeLine(4); // while (low <= high)
                 searchInfo.textContent = `Continuing search: low = ${low}, high = ${high}`;
-                await sleep(delay);
-            }
+                await sleep(delay);)
+            }uing search: low = ${low}, high = ${high}`;
             
             highlightCodeLine(24); // return -1
             searchInfo.textContent = `${target} was not found in the array. 😞`;
             await sleep(delay);
-            
-            searching = false;
-            return -1;
-        }
+            s not found in the array. 😞`;
+            searching = false;wait sleep(delay);
+            return -1;   
+        }    searching = false;
         
         // Update the array size
         function updateArraySize() {
-            const newSize = parseInt(arraySizeInput.value);
-            if (newSize >= 5 && newSize <= 20) {
-                ARRAY_SIZE = newSize;
+            const newSize = parseInt(arraySizeInput.value);size
+            if (newSize >= 5 && newSize <= 20) {ction updateArraySize() {
+                ARRAY_SIZE = newSize;    const newSize = parseInt(arraySizeInput.value);
                 generateArray();
-            } else {
-                alert("Please enter a size between 5 and 20");
+            } else {ze;
+                alert("Please enter a size between 5 and 20");    generateArray();
                 arraySizeInput.value = ARRAY_SIZE;
-            }
+            } size between 5 and 20");
         }
         
         // Event Listeners
         generateBtn.addEventListener('click', () => {
             if (searching) return;
-            generateArray();
-        });
+            generateArray();erateBtn.addEventListener('click', () => {
+        });    if (searching) return;
         
-        searchBtn.addEventListener('click', () => {
+        searchBtn.addEventListener('click', () => {});
             if (searching) return;
-            
-            const targetValue = parseInt(searchValueInput.value);
-            if (isNaN(targetValue)) {
+            > {
+            const targetValue = parseInt(searchValueInput.value); if (searching) return;
+            if (isNaN(targetValue)) {    
                 alert("Please enter a valid number");
-                return;
+                return;    if (isNaN(targetValue)) {
             }
             
             visualizeBinarySearch(targetValue);
         });
+         visualizeBinarySearch(targetValue);
+        resetBtn.addEventListener('click', resetVisualization);});
         
-        resetBtn.addEventListener('click', resetVisualization);
-        
-        speedSelect.addEventListener('change', () => {
+        speedSelect.addEventListener('change', () => {tListener('click', resetVisualization);
             delay = parseInt(speedSelect.value);
-        });
+        }); speedSelect.addEventListener('change', () => {
+             delay = parseInt(speedSelect.value);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html></body>    </script>        generateArray();        // Initialize                });            }                searchBtn.click();            if (e.key === 'Enter') {        searchValueInput.addEventListener('keypress', (e) => {                updateSizeBtn.addEventListener('click', updateArraySize);        });
         
         updateSizeBtn.addEventListener('click', updateArraySize);
         
