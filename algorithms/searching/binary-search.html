@@ -7,138 +7,894 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../algorithms.css">
     <link rel="icon" href="../../introduction/favicon.ico" type="image/x-icon">
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #5e17eb;
+            --primary-light: #8257fe;
+            --primary-dark: #4912c9;
+            --secondary: #06b6d4;
+            --accent: #f97316;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --neutral-50: #fafafa;
+            --neutral-100: #f4f4f5;
+            --neutral-200: #e4e4e7;
+            --neutral-700: #3f3f46;
+            --neutral-800: #27272a;
+            --neutral-900: #18181b;
+            --neutral-950: #09090b;
+            --card-bg: rgba(30, 30, 35, 0.8);
+            --card-bg-light: rgba(250, 250, 250, 0.8);
+            --backdrop-blur: 10px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --text-color: var(--neutral-100);
+            --bg-color: var(--neutral-900);
+        }
+
+        .light-mode {
+            --text-color: var(--neutral-900);
+            --bg-color: var(--neutral-50);
+            --card-bg: var(--card-bg-light);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-base);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(94, 23, 235, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+            min-height: 100vh;
+        }
+
+        /* Glowing background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: 
+                linear-gradient(120deg, rgba(94, 23, 235, 0.05) 0%, transparent 40%),
+                linear-gradient(220deg, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* Lighting effect for dark mode */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                rgba(94, 23, 235, 0.02) 0%,
+                transparent 50%
+            );
+            z-index: -2;
+            animation: rotate 40s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header styles with glass effect */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(var(--backdrop-blur));
+            box-shadow: var(--shadow);
+            transition: var(--transition-base);
+        }
+
+        .light-mode header {
+            background: rgba(250, 250, 250, 0.8);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition-base);
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition-base);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Main content styles */
+        main {
+            padding-top: 6rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            padding: 2rem 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Visualization container with glass morphism */
         .visualization-container {
             margin: 2rem auto;
-            padding: 1rem;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition-base);
+            transform: perspective(1000px) rotateX(0deg);
         }
-        
-        .array-container {
+
+        .visualization-container:hover {
+            transform: perspective(1000px) rotateX(2deg);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px) scale(1.5);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-40px) translateX(-10px) scale(1);
+                opacity: 0.2;
+            }
+            75% {
+                transform: translateY(-60px) translateX(20px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Controls section */
+        .controls-wrapper {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .controls-row {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
             align-items: center;
-            flex-wrap: nowrap;  /* Changed from wrap to nowrap */
-            min-height: 200px;
-            margin: 2rem 0;
-            position: relative;
-            overflow-x: auto;  /* Added overflow-x to allow horizontal scrolling if needed */
-            padding: 2rem 1rem;  /* Added padding for better spacing */
-        }   border: 1px dashed #ccc;
-            border-radius: 8px;
-        .array-element {dth: thin;
-            min-width: 50px;  /* Changed width to min-width */
-            height: 50px;
-            margin: 5px;
-            display: flex;-webkit-scrollbar {
-            align-items: center;
-            justify-content: center;
-            background-color: #64748b;  /* Changed to match new default color */
-            color: white;:-webkit-scrollbar-thumb {
-            font-weight: bold;var(--accent-color);
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            position: relative;
-        }array-element {
-            min-width: 40px;
-        .array-element:after { var(--total-elements, 10));
-            content: attr(data-index);
-            position: absolute;
-            bottom: -20px;
-            font-size: 12px;
-            color: var(--text-color);
-        }   justify-content: center;
-            background-color: #64748b;
-        .controls {white;
-            display: flex;old;
-            justify-content: center;
-            flex-wrap: wrap;0.3s ease;
-            gap: 1rem;relative;
-            margin-bottom: 1rem;
         }
-        .array-element:after {
-        .controls-group {(data-index);
-            display: flex;lute;
-            align-items: center;
-            gap: 0.5rem;2px;
-        }   color: var(--text-color);
-        }
-        .code-container {
-            background-color: #1e1e1e;
-            border-radius: 8px;
-            padding: 1rem;t: center;
-            margin: 2rem 0;;
-            overflow-x: auto;
-        }   margin-bottom: 1rem;
-        }
-        .code-container pre {
-            color: #d4d4d4;
-            font-family: 'Consolas', 'Monaco', monospace;
-            line-height: 1.5;er;
-        }   gap: 0.5rem;
-        }
-        .current-line {
-            background-color: rgba(86, 156, 214, 0.2);
-            display: block;r: #1e1e1e;
-        }   border-radius: 8px;
-            padding: 1rem;
-        .legend {n: 2rem 0;
-            display: flex;to;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1rem 0; {
-        }   color: #d4d4d4;
-            font-family: 'Consolas', 'Monaco', monospace;
-        .legend-item {t: 1.5;
+
+        .controls-group {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }   background-color: rgba(86, 156, 214, 0.2);
-            display: block;
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-        }   justify-content: center;
-            gap: 2rem;
-        .current { background-color: #facc15; }
-        .low { background-color: #ef4444; }
-        .mid { background-color: #8b5cf6; }
-        .high { background-color: #3b82f6; }  /* Changed from #10b981 to blue */
-        .found { background-color: #22c55e; }
-        .not-found { background-color: #f87171; }
-        .default { background-color: #64748b; } /* Changed from #3b82f6 to a darker shade */
         }
+
+        /* Mode toggle */
+        .mode-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--neutral-800);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--neutral-200);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .light-mode .mode-toggle {
+            background: var(--neutral-200);
+            color: var(--neutral-800);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-toggle:hover {
+            transform: rotate(15deg);
+        }
+
+        /* Stylized inputs and buttons */
+        .btn, .input-field, select {
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition-base);
+            outline: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .light-mode .btn, 
+        .light-mode .input-field, 
+        .light-mode select {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--neutral-700), var(--neutral-800));
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(45deg, var(--accent), #fb923c);
+            color: white;
+        }
+
+        /* Button ripple effect */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        .input-field:focus, 
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(94, 23, 235, 0.2);
+        }
+
+        .input-field::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .light-mode .input-field::placeholder {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Array visualization */
+        .array-visualization {
+            position: relative;
+            z-index: 10;
+            perspective: 1000px;
+        }
+
         .search-info {
-            margin: 1rem 0;
-            padding: 1rem;
-            background-color: var(--card-bg);
-            border-radius: 5px;
             text-align: center;
-            min-height: 80px;
-        }current { background-color: #facc15; }
-        .low { background-color: #ef4444; }
-        @media (max-width: 768px) {b5cf6; }
-            .controls {und-color: #3b82f6; }
-                flex-direction: column;55e; }
-                align-items: center;r: #f87171; }
-            }ult { background-color: #64748b; }
-            
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            min-height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .light-mode .search-info {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .array-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 6px;
+            height: 300px;
+            padding: 2rem 1rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            margin: 2rem 0;
+            position: relative;
+            transition: var(--transition-base);
+        }
+
+        .array-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .array-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .array-container::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 4px;
+            transition: var(--transition-base);
+        }
+
+        .array-container::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .array-element {
+            flex: 1;
+            min-width: 50px;
+            height: calc(var(--value) * 2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .array-element::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            z-index: -1;
+        }
+
+        .array-element::after {
+            content: attr(data-index);
+            position: absolute;
+            bottom: -25px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-color);
+            transition: var(--transition-base);
+        }
+
+        .array-element.default {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .array-element.low {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .array-element.high {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .array-element.mid {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .array-element.current {
+            background: linear-gradient(135deg, #facc15, #eab308);
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .array-element.found {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            transform: translateY(-20px) scale(1.1) rotateY(360deg);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        .array-element.not-found {
+            background: linear-gradient(135deg, #f87171, #ef4444);
+            opacity: 0.7;
+            transform: translateY(5px) scale(0.95);
+        }
+
+        .array-element.not-checked {
+            background: linear-gradient(135deg, #64748b, #475569);
+            opacity: 0.5;
+            transform: translateY(5px) scale(0.95);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.8); }
+        }
+
+        /* Legend styling */
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: var(--transition-base);
+        }
+
+        .light-mode .legend-item {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .legend-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Code display with syntax highlighting */
+        .code-section {
+            position: relative;
+            z-index: 10;
+            margin: 3rem 0;
+        }
+
+        .code-container {
+            background: var(--neutral-950);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .light-mode .code-container {
+            background: var(--neutral-200);
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode .code-header {
+            background: rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .code-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0;
+            flex: 1;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot:nth-child(1) {
+            background-color: #ff5f56;
+        }
+
+        .code-dot:nth-child(2) {
+            background-color: #ffbd2e;
+        }
+
+        .code-dot:nth-child(3) {
+            background-color: #27c93f;
+        }
+
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e4e4e7;
+        }
+
+        .light-mode pre {
+            color: #27272a;
+        }
+
+        .code-keyword {
+            color: #8b5cf6;
+        }
+
+        .code-function {
+            color: #3b82f6;
+        }
+
+        .code-comment {
+            color: #64748b;
+        }
+
+        .code-number {
+            color: #f97316;
+        }
+
+        .code-string {
+            color: #22c55e;
+        }
+
+        .current-line {
+            background-color: rgba(139, 92, 246, 0.2);
+            display: block;
+            margin: -0.25rem -1.5rem;
+            padding: 0.25rem 1.5rem;
+        }
+
+        /* Algorithm details section */
+        .algorithm-details {
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            backdrop-filter: blur(var(--backdrop-blur));
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-base);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .algorithm-details h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .algorithm-details h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-light);
+        }
+
+        .algorithm-details h4 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--secondary);
+        }
+
+        .algorithm-details p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .algorithm-details ol,
+        .algorithm-details ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .algorithm-details li {
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            margin-top: 2rem;
+            display: inline-block;
+        }
+
+        /* Footer styling */
+        footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(var(--backdrop-blur));
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--card-bg);
+                backdrop-filter: blur(var(--backdrop-blur));
+                flex-direction: column;
+                gap: 0;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition-base);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                top: 0;
+            }
+
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 21px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+
+            .bar {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: var(--text-color);
+                border-radius: 3px;
+                transition: var(--transition-base);
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
             .array-element {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;--card-bg);
-            }order-radius: 5px;
-        }   text-align: center;
-    </style>min-height: 80px;
-</head> }
-<body>  
-    <header>ia (max-width: 768px) {
+                min-width: 40px;
+            }
+
+            .algorithm-details {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animation keyframes */
+        @keyframes scale-up {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fade-in-up {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Application of animations */
+        .controls-wrapper, .array-visualization, .code-section, .algorithm-details {
+            animation: fade-in-up 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .controls-wrapper { animation-delay: 0.1s; }
+        .array-visualization { animation-delay: 0.3s; }
+        .code-section { animation-delay: 0.5s; }
+        .algorithm-details { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <header>
         <div class="container">
-            <nav class="navbar">column;
-                <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+            <nav class="navbar">
+                <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent)">.</span></a>
                 <ul class="nav-menu">
                     <li><a href="../../index.html" class="nav-link">Home</a></li>
                     <li><a href="../../index.html#about" class="nav-link">About</a></li>
@@ -151,168 +907,199 @@
                     <span class="bar"></span>
                     <span class="bar"></span>
                 </div>
-            </nav>="container">
-        </div>av class="navbar">
-    </header>   <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
-                <ul class="nav-menu">
-    <main>          <li><a href="../../index.html" class="nav-link">Home</a></li>
-        <section class="section" style="padding-top: 120px;">s="nav-link">About</a></li>
-            <div class="container">/../index.html#projects" class="nav-link">Projects</a></li>
-                <h1 class="section-title">Binary Search Visualization</h1>nav-link">Problem Solving</a></li>
-                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
-                <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
-                    <p>ass="hamburger">
-                        Binary Search is an efficient algorithm for finding a target value within a sorted array.
-                        It works by repeatedly dividing the search interval in half, significantly reducing the number of comparisons needed.
-                    </p>n class="bar"></span>
-                </div>
-                v>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">Binary Search Visualization</h1>
+                
+                <p class="intro-text">
+                    Binary Search is an efficient algorithm for finding a target value within a sorted array.
+                    It works by repeatedly dividing the search interval in half, significantly reducing the number of comparisons needed.
+                </p>
+                
                 <div class="visualization-container">
-                    <div class="array-size-container">
-                        <label for="array-size">Array Size:</label>
-                        <input type="number" id="array-size" min="5" max="20" value="10" class="btn">
-                        <button id="update-size-btn" class="btn">Update Size</button>
-                    </div>ntainer">
-                    class="section-title">Binary Search Visualization</h1>
-                    <div class="controls">
-                        <button id="generate-btn" class="btn">Generate New Sorted Array</button>
-                        <div class="controls-group">
-                            <input type="number" id="search-value" placeholder="Search value" class="btn"> array.
-                            <button id="search-btn" class="btn">Search</button>half, significantly reducing the number of comparisons needed.
+                    <button class="mode-toggle" id="mode-toggle" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Floating particles for visual effect -->
+                    <div class="particles" id="particles"></div>
+                    
+                    <div class="controls-wrapper">
+                        <div class="controls-row">
+                            <div class="controls-group">
+                                <label for="array-size">Array Size:</label>
+                                <input type="number" id="array-size" min="5" max="30" value="15" class="input-field">
+                                <button id="update-size-btn" class="btn btn-secondary">
+                                    <i class="fas fa-refresh"></i> Update
+                                </button>
+                            </div>
                         </div>
-                        <button id="reset-btn" class="btn">Reset</button>
-                        <select id="speed-select" class="btn">
-                            <option value="1000">Slow</option>
-                            <option value="500" selected>Medium</option>
-                            <option value="200">Fast</option>label>
-                        </select>pe="number" id="array-size" min="5" max="20" value="10" class="btn">
-                    </div>utton id="update-size-btn" class="btn">Update Size</button>
+                        
+                        <div class="controls-row">
+                            <button id="generate-btn" class="btn btn-primary">
+                                <i class="fas fa-random"></i> Generate New Array
+                            </button>
+                            
+                            <div class="controls-group">
+                                <input type="number" id="search-value" placeholder="Search value" class="input-field">
+                                <button id="search-btn" class="btn btn-accent">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                            </div>
+                            
+                            <button id="reset-btn" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i> Reset
+                            </button>
+                            
+                            <select id="speed-select" class="input-field">
+                                <option value="1000">Slow</option>
+                                <option value="500" selected>Medium</option>
+                                <option value="200">Fast</option>
+                            </select>
+                        </div>
                     </div>
+                    
                     <div class="legend">
                         <div class="legend-item">
-                            <div class="legend-color default"></div>te New Sorted Array</button>
+                            <div class="legend-color default"></div>
                             <span>Not Checked</span>
-                        </div>nput type="number" id="search-value" placeholder="Search value" class="btn">
-                        <div class="legend-item">n" class="btn">Search</button>
+                        </div>
+                        <div class="legend-item">
                             <div class="legend-color current"></div>
-                            <span>Current</span>lass="btn">Reset</button>
-                        </div>t id="speed-select" class="btn">
-                        <div class="legend-item">Slow</option>
-                            <div class="legend-color low"></div>/option>
-                            <span>Low</span>00">Fast</option>
-                        </div>ct>
+                            <span>Current</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color low"></div>
+                            <span>Low</span>
+                        </div>
                         <div class="legend-item">
                             <div class="legend-color mid"></div>
                             <span>Mid</span>
-                        </div>lass="legend-item">
-                        <div class="legend-item">lor default"></div>
+                        </div>
+                        <div class="legend-item">
                             <div class="legend-color high"></div>
                             <span>High</span>
-                        </div>lass="legend-item">
-                        <div class="legend-item">lor current"></div>
+                        </div>
+                        <div class="legend-item">
                             <div class="legend-color found"></div>
                             <span>Found</span>
-                        </div>lass="legend-item">
-                    </div>  <div class="legend-color low"></div>
-                            <span>Low</span>
-                    <div class="search-info" id="search-info">
-                        Generate a sorted array and enter a number to search for.
-                    </div>  <div class="legend-color mid"></div>
-                            <span>Mid</span>
-                    <div class="array-container" id="array-container"></div>
-                        <div class="legend-item">
-                    <div class="code-container">olor high"></div>
-                        <pre id="code-display">
-function binarySearch(arr, target) {
-    let low = 0;        <div class="legend-item">
-    let high = arr.length - 1;iv class="legend-color found"></div>
-                            <span>Found</span>
-    while (low <= high) {/div>
-        // Find the middle index
-        const mid = Math.floor((low + high) / 2);
-                    <div class="search-info" id="search-info">
-        // If target is found at the middlerray and enter a number to search for.
-        if (arr[mid] === target) {
-            return mid;
-        }           <div class="array-container" id="array-container"></div>
+                        </div>
+                    </div>
                     
-        // If target is greater, ignore the left half
-        if (arr[mid] < target) {"code-display">
-            low = mid + 1; target) {
-        } w = 0;
-        // If target is smaller, ignore the right half
-        else {
-            high = mid - 1;
-        }/ Find the middle index
-    }   const mid = Math.floor((low + high) / 2);
+                    <div class="array-visualization">
+                        <div class="search-info" id="search-info">
+                            Generate a sorted array and enter a number to search for
+                        </div>
+                        
+                        <div class="array-container" id="array-container"></div>
+                    </div>
+                    
+                    <div class="code-section">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <div class="code-dots">
+                                    <div class="code-dot"></div>
+                                    <div class="code-dot"></div>
+                                    <div class="code-dot"></div>
+                                </div>
+                                <h3 class="code-title">binary-search.js</h3>
+                            </div>
+                            <pre id="code-display"><span class="code-keyword">function</span> <span class="code-function">binarySearch</span>(arr, target) {
+    <span class="code-keyword">let</span> low = 0;
+    <span class="code-keyword">let</span> high = arr.length - <span class="code-number">1</span>;
+    
+    <span class="code-keyword">while</span> (low <= high) {
+        <span class="code-comment">// Find the middle index</span>
+        <span class="code-keyword">const</span> mid = Math.floor((low + high) / <span class="code-number">2</span>);
         
-    // Target is not in the arraythe middle
-    return -1;r[mid] === target) {
-}</pre>     return mid;
+        <span class="code-comment">// If target is found at the middle</span>
+        <span class="code-keyword">if</span> (arr[mid] === target) {
+            <span class="code-keyword">return</span> mid;
+        }
+        
+        <span class="code-comment">// If target is greater, ignore the left half</span>
+        <span class="code-keyword">if</span> (arr[mid] < target) {
+            low = mid + <span class="code-number">1</span>;
+        }
+        <span class="code-comment">// If target is smaller, ignore the right half</span>
+        <span class="code-keyword">else</span> {
+            high = mid - <span class="code-number">1</span>;
+        }
+    }
+    
+    <span class="code-comment">// Target is not in the array</span>
+    <span class="code-keyword">return</span> -<span class="code-number">1</span>;
+}</pre>
+                        </div>
                     </div>
                 </div>
-                rget is greater, ignore the left half
+                
                 <div class="algorithm-details">
                     <h2>How Binary Search Works</h2>
                     <p>
                         Binary Search is a divide-and-conquer algorithm that finds the position of a target value
                         within a sorted array. It works by repeatedly dividing the search interval in half.
-                    </p> 1;
+                    </p>
                     
                     <h3>Algorithm Steps:</h3>
-                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                    <ol>
                         <li>Start with the middle element of the sorted array.</li>
                         <li>If the target value is equal to the middle element, the search is complete.</li>
                         <li>If the target value is less than the middle element, continue the search in the lower half.</li>
                         <li>If the target value is greater than the middle element, continue the search in the upper half.</li>
                         <li>Repeat steps 2-4 until the element is found or the subarray is empty.</li>
                     </ol>
-                     class="algorithm-details">
+                    
                     <h3>Time and Space Complexity:</h3>
-                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
-                        <li><strong>Time Complexity:</strong> algorithm that finds the position of a target value
-                            <ul> sorted array. It works by repeatedly dividing the search interval in half.
+                    <ul>
+                        <li>
+                            <strong>Time Complexity:</strong>
+                            <ul>
                                 <li>Worst Case: O(log n) - The target element is not in the array or appears at the end of the search.</li>
                                 <li>Average Case: O(log n)</li>
                                 <li>Best Case: O(1) - The target element is at the middle of the array.</li>
-                            </ul>rgin-left: 2rem; margin-bottom: 2rem;">
-                        </li>tart with the middle element of the sorted array.</li>
+                            </ul>
+                        </li>
                         <li><strong>Space Complexity:</strong> O(1) - Binary Search uses a constant amount of extra space.</li>
-                    </ul>li>If the target value is less than the middle element, continue the search in the lower half.</li>
-                        <li>If the target value is greater than the middle element, continue the search in the upper half.</li>
-                    <h3>Advantages and Disadvantages:</h3>ment is found or the subarray is empty.</li>
+                    </ul>
+                    
+                    <h3>Advantages and Disadvantages:</h3>
                     <h4>Advantages:</h4>
-                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                    <ul>
                         <li>Very efficient for large datasets</li>
                         <li>Logarithmic time complexity makes it much faster than linear search</li>
-                        <li>Uses minimal memory</li></strong>
-                    </ul>   <ul>
-                                <li>Worst Case: O(log n) - The target element is not in the array or appears at the end of the search.</li>
-                    <h4>Disadvantages:</h4> Case: O(log n)</li>
-                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">e array.</li>
+                        <li>Uses minimal memory</li>
+                    </ul>
+                    
+                    <h4>Disadvantages:</h4>
+                    <ul>
                         <li>Array must be sorted beforehand</li>
                         <li>Only works with sequential data structures that allow random access (like arrays)</li>
-                        <li>Not efficient for small datasets compared to linear search</li>constant amount of extra space.</li>
+                        <li>Not efficient for small datasets compared to linear search</li>
                     </ul>
                     
                     <div style="text-align: center; margin-top: 3rem;">
-                        <a href="../index.html" class="btn">Back to Algorithms</a>
-                    </div>yle="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
-                </div>  <li>Very efficient for large datasets</li>
-            </div>      <li>Logarithmic time complexity makes it much faster than linear search</li>
-        </section>      <li>Uses minimal memory</li>
-    </main>         </ul>
-                    
-    <footer>        <h4>Disadvantages:</h4>
-        <div class="container">list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
-            <p>&copy; <span id="currentYear">2025</span> Gautam Sharma. All rights reserved.</p>
-        </div>          <li>Only works with sequential data structures that allow random access (like arrays)</li>
-    </footer>           <li>Not efficient for small datasets compared to linear search</li>
-                    </ul>
-    <script>        
-        // Update copyright yeartext-align: center; margin-top: 3rem;">
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+                        <a href="../index.html" class="btn btn-primary back-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Algorithms
+                        </a>
                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear">2025</span> Gautam Sharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
         // DOM Elements
         const arrayContainer = document.getElementById('array-container');
         const generateBtn = document.getElementById('generate-btn');
@@ -320,98 +1107,157 @@ function binarySearch(arr, target) {
         const resetBtn = document.getElementById('reset-btn');
         const speedSelect = document.getElementById('speed-select');
         const codeDisplay = document.getElementById('code-display');
-        const searchInfo = document.getElementById('search-info');arma. All rights reserved.</p>
+        const searchInfo = document.getElementById('search-info');
         const searchValueInput = document.getElementById('search-value');
         const arraySizeInput = document.getElementById('array-size');
         const updateSizeBtn = document.getElementById('update-size-btn');
-        ipt>
-        // Configurationght year
-        let ARRAY_SIZE = parseInt(arraySizeInput.value);nt = new Date().getFullYear();
+        const modeToggle = document.getElementById('mode-toggle');
+        const body = document.body;
+        const particles = document.getElementById('particles');
+        
+        // Configuration
+        let ARRAY_SIZE = parseInt(arraySizeInput.value);
         const MIN_VALUE = 1;
         const MAX_VALUE = 100;
-        let array = [];ainer = document.getElementById('array-container');
-        let arrayElements = [];ument.getElementById('generate-btn');
-        let searching = false;ment.getElementById('search-btn');
-        let delay = parseInt(speedSelect.value);('reset-btn');
-        const speedSelect = document.getElementById('speed-select');
-        // Create a new sorted random arraymentById('code-display');
-        function generateArray() {t.getElementById('search-info');
-            array = [];ueInput = document.getElementById('search-value');
-            t arraySizeInput = document.getElementById('array-size');
-            // Generate random numbers.getElementById('update-size-btn');
+        let array = [];
+        let arrayElements = [];
+        let searching = false;
+        let delay = parseInt(speedSelect.value);
+
+        // Create particles for background effect
+        function createParticles() {
+            particles.innerHTML = '';
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.width = `${Math.random() * 6 + 2}px`;
+                particle.style.height = particle.style.width;
+                particle.style.opacity = Math.random() * 0.5;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particles.appendChild(particle);
+            }
+        }
+        
+        // Toggle dark/light mode
+        function toggleMode() {
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                modeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+        
+        // Load saved theme preference
+        function loadThemePreference() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-mode');
+                modeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+        
+        // Create a new sorted random array
+        function generateArray() {
+            array = [];
+            
+            // Generate random numbers
             for (let i = 0; i < ARRAY_SIZE; i++) {
                 let value = Math.floor(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
-                array.push(value);arraySizeInput.value);
-            } MIN_VALUE = 1;
-            t MAX_VALUE = 100;
+                array.push(value);
+            }
+            
             // Sort the array
             array.sort((a, b) => a - b);
             searching = false;
-            // Make sure all numbers are unique;
+            
+            // Make sure all numbers are unique
             for (let i = 1; i < array.length; i++) {
                 if (array[i] === array[i - 1]) {
                     array[i]++;
                 }
             }
+            
             displayArray();
             searchInfo.textContent = "Array generated. Enter a number to search.";
+            
+            // Add ripple effect to array elements
+            setTimeout(() => {
+                arrayElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('ripple-in');
+                        setTimeout(() => el.classList.remove('ripple-in'), 300);
+                    }, index * 30);
+                });
+            }, 100);
         }
+        
         // Display the array
         function displayArray() {
             arrayContainer.innerHTML = '';
             arrayElements = [];
-            // Make sure all numbers are unique
+            
             // Set CSS variable for sizing elements
             arrayContainer.style.setProperty('--total-elements', array.length);
             
             for (let i = 0; i < array.length; i++) {
                 const element = document.createElement('div');
-                element.classList.add('array-element');
+                element.classList.add('array-element', 'default');
                 element.textContent = array[i];
-                element.setAttribute('data-index', i);generated. Enter a number to search.";
+                element.setAttribute('data-index', i);
+                element.style.setProperty('--value', array[i]);
                 
                 arrayContainer.appendChild(element);
-                arrayElements.push(element);// Display the array
+                arrayElements.push(element);
             }
-'';
+            
             // Ensure the container is scrolled to the beginning
             arrayContainer.scrollLeft = 0;
-            i++) {
+            
             // Add scroll hint if needed
-            if (arrayContainer.scrollWidth > arrayContainer.clientWidth) {ray-element');
+            if (arrayContainer.scrollWidth > arrayContainer.clientWidth) {
                 searchInfo.textContent = "Array generated. Scroll horizontally if needed to see all elements. Enter a number to search.";
-            } else { element.setAttribute('data-index', i);
-                searchInfo.textContent = "Array generated. Enter a number to search.";    
-            }dChild(element);
+            } else {
+                searchInfo.textContent = "Array generated. Enter a number to search.";
+            }
         }
-           }
-        // Reset the visualization}
+        
+        // Reset the visualization
         function resetVisualization() {
             if (searching) return;
             
             arrayElements.forEach(element => {
-                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');
-                // Reset to default color
-                element.style.backgroundColor = '';ve('current', 'low', 'mid', 'high', 'found', 'not-found');
+                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found', 'not-checked');
+                element.classList.add('default');
             });
-            style.backgroundColor = '';
+            
             highlightCodeLine(null);
             searchInfo.textContent = "Array reset. Enter a number to search.";
-        }ighlightCodeLine(null);
-        searchInfo.textContent = "Array reset. Enter a number to search.";
+        }
+        
         // Highlight specific line in code display
         function highlightCodeLine(lineIndex) {
-            const codeLines = codeDisplay.innerHTML.split('\n');// Highlight specific line in code display
-            let highlightedCode = ''; {
-            = codeDisplay.innerHTML.split('\n');
+            const codeLines = codeDisplay.innerHTML.split('\n');
+            let highlightedCode = '';
+            
             for (let i = 0; i < codeLines.length; i++) {
-                if (i === lineIndex) {   
-                    highlightedCode += `<span class="current-line">${codeLines[i]}</span>\n`;    for (let i = 0; i < codeLines.length; i++) {
+                if (i === lineIndex) {
+                    highlightedCode += `<span class="current-line">${codeLines[i]}</span>\n`;
                 } else {
-                    highlightedCode += codeLines[i] + '\n';urrent-line">${codeLines[i]}</span>\n`;
+                    highlightedCode += codeLines[i] + '\n';
                 }
-            }edCode += codeLines[i] + '\n';
-                }
+            }
+            
             codeDisplay.innerHTML = highlightedCode;
         }
         
@@ -419,173 +1265,183 @@ function binarySearch(arr, target) {
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        return new Promise(resolve => setTimeout(resolve, ms));
+        
         // Binary Search Algorithm with visualization
         async function visualizeBinarySearch(target) {
-            if (searching) return;inary Search Algorithm with visualization
-            searching = true;get) {
+            if (searching) return;
+            searching = true;
             
             // Reset any previous visualization
             arrayElements.forEach(element => {
-                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');// Reset any previous visualization
+                element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found', 'not-checked');
+                element.classList.add('default');
             });
-            ow', 'mid', 'high', 'found', 'not-found');
+            
             highlightCodeLine(0); // function declaration
             await sleep(delay);
-            highlightCodeLine(0); // function declaration
+            
             let low = 0;
             let high = array.length - 1;
-            let low = 0;
-            highlightCodeLine(1); // let low = 0th - 1;
+            
+            highlightCodeLine(1); // let low = 0
+            arrayElements[low].classList.remove('default');
             arrayElements[low].classList.add('low');
             searchInfo.textContent = `Setting low = ${low} (index of ${array[low]})`;
-            await sleep(delay);yElements[low].classList.add('low');
-            of ${array[low]})`;
+            await sleep(delay);
+            
             highlightCodeLine(2); // let high = arr.length - 1
+            arrayElements[high].classList.remove('default');
             arrayElements[high].classList.add('high');
-            searchInfo.textContent = `Setting high = ${high} (index of ${array[high]})`;/ let high = arr.length - 1
-            await sleep(delay);yElements[high].classList.add('high');
-            ex of ${array[high]})`;
+            searchInfo.textContent = `Setting high = ${high} (index of ${array[high]})`;
+            await sleep(delay);
+            
             highlightCodeLine(4); // while loop
             await sleep(delay);
-            / while loop
-            while (low <= high) {t sleep(delay);
+            
+            while (low <= high) {
                 // Find the middle index
                 const mid = Math.floor((low + high) / 2);
                 
                 highlightCodeLine(6); // const mid = Math.floor...
+                arrayElements[mid].classList.remove('default');
                 arrayElements[mid].classList.add('mid');
                 searchInfo.textContent = `Calculating mid = floor((${low} + ${high}) / 2) = ${mid} (value: ${array[mid]})`;
-                await sleep(delay);sList.add('mid');
-                chInfo.textContent = `Calculating mid = floor((${low} + ${high}) / 2) = ${mid} (value: ${array[mid]})`;
+                await sleep(delay);
+                
                 highlightCodeLine(9); // if (arr[mid] === target)
                 arrayElements[mid].classList.add('current');
-                searchInfo.textContent = `Comparing: Is ${array[mid]} === ${target}?`;ighlightCodeLine(9); // if (arr[mid] === target)
-                await sleep(delay);arrayElements[mid].classList.add('current');
-                mid]} === ${target}?`;
+                searchInfo.textContent = `Comparing: Is ${array[mid]} === ${target}?`;
+                await sleep(delay);
+                
                 // If target is found at the middle
                 if (array[mid] === target) {
-                    highlightCodeLine(10); // return mid// If target is found at the middle
+                    highlightCodeLine(10); // return mid
                     arrayElements[mid].classList.remove('current', 'mid');
-                    arrayElements[mid].classList.add('found'); // return mid
-                    searchInfo.textContent = `Found ${target} at index ${mid}! 🎉`;rrent', 'mid');
-                    await sleep(delay);arrayElements[mid].classList.add('found');
-                     ${target} at index ${mid}! 🎉`;
+                    arrayElements[mid].classList.add('found');
+                    searchInfo.textContent = `Found ${target} at index ${mid}! 🎉`;
+                    await sleep(delay);
+                    
                     searching = false;
                     return mid;
                 }
-                eturn mid;
+                
                 highlightCodeLine(14); // if (arr[mid] < target)
                 searchInfo.textContent = `Is ${array[mid]} < ${target}?`;
-                await sleep(delay);14); // if (arr[mid] < target)
-                 = `Is ${array[mid]} < ${target}?`;
+                await sleep(delay);
+                
                 // If target is greater, ignore the left half
                 if (array[mid] < target) {
-                    highlightCodeLine(15); // low = mid + 1f target is greater, ignore the left half
+                    highlightCodeLine(15); // low = mid + 1
                     
-                    // Mark elements to be excluded5); // low = mid + 1
-                    for (let i = low; i <= mid; i++) {  
+                    // Mark elements to be excluded
+                    for (let i = low; i <= mid; i++) {
                         arrayElements[i].classList.remove('low', 'mid', 'high', 'current');
-                        arrayElements[i].classList.add('not-checked');r (let i = low; i <= mid; i++) {
-                    }ow', 'mid', 'high', 'current');
                         arrayElements[i].classList.add('not-checked');
+                    }
+                    
                     // Update low
                     low = mid + 1;
                     if (low <= high) {
+                        arrayElements[low].classList.remove('default', 'not-checked');
                         arrayElements[low].classList.add('low');
-                    }f (low <= high) {
-                        arrayElements[low].classList.add('low');
+                    }
+                    
                     searchInfo.textContent = `${array[mid]} < ${target}, so update low = ${low}`;
                     await sleep(delay);
-                } ontent = `${array[mid]} < ${target}, so update low = ${low}`;
+                }
                 // If target is smaller, ignore the right half
                 else {
-                    highlightCodeLine(19); // high = mid - 1f target is smaller, ignore the right half
+                    highlightCodeLine(19); // high = mid - 1
                     
-                    // Mark elements to be excluded9); // high = mid - 1
-                    for (let i = mid; i <= high; i++) {   
-                        arrayElements[i].classList.remove('low', 'mid', 'high', 'current');    // Mark elements to be excluded
-                        arrayElements[i].classList.add('not-checked');h; i++) {
-                    }classList.remove('low', 'mid', 'high', 'current');
+                    // Mark elements to be excluded
+                    for (let i = mid; i <= high; i++) {
+                        arrayElements[i].classList.remove('low', 'mid', 'high', 'current');
+                        arrayElements[i].classList.add('not-checked');
+                    }
                     
-                    // Update high   }
-                    high = mid - 1;    
+                    // Update high
+                    high = mid - 1;
                     if (high >= 0) {
+                        arrayElements[high].classList.remove('default', 'not-checked');
                         arrayElements[high].classList.add('high');
-                    }{
-                               arrayElements[high].classList.add('high');
-                    searchInfo.textContent = `${array[mid]} > ${target}, so update high = ${high}`;        }
+                    }
+                    
+                    searchInfo.textContent = `${array[mid]} > ${target}, so update high = ${high}`;
                     await sleep(delay);
-                }te high = ${high}`;
-                (delay);
-                // Clear current mid highlight    }
+                }
+                
+                // Clear current mid highlight
                 if (arrayElements[mid]) {
-                    arrayElements[mid].classList.remove('current', 'mid');ar current mid highlight
-                }       if (arrayElements[mid]) {
-                            arrayElements[mid].classList.remove('current', 'mid');
+                    arrayElements[mid].classList.remove('current', 'mid');
+                }
+                
                 highlightCodeLine(4); // while (low <= high)
                 searchInfo.textContent = `Continuing search: low = ${low}, high = ${high}`;
-                await sleep(delay);)
-            }uing search: low = ${low}, high = ${high}`;
+                await sleep(delay);
+            }
             
             highlightCodeLine(24); // return -1
             searchInfo.textContent = `${target} was not found in the array. 😞`;
             await sleep(delay);
-            s not found in the array. 😞`;
-            searching = false;wait sleep(delay);
-            return -1;   
-        }    searching = false;
+            
+            searching = false;
+            return -1;
+        }
         
         // Update the array size
         function updateArraySize() {
-            const newSize = parseInt(arraySizeInput.value);size
-            if (newSize >= 5 && newSize <= 20) {ction updateArraySize() {
-                ARRAY_SIZE = newSize;    const newSize = parseInt(arraySizeInput.value);
+            const newSize = parseInt(arraySizeInput.value);
+            if (newSize >= 5 && newSize <= 30) {
+                ARRAY_SIZE = newSize;
                 generateArray();
-            } else {ze;
-                alert("Please enter a size between 5 and 20");    generateArray();
+            } else {
+                alert("Please enter a size between 5 and 30");
                 arraySizeInput.value = ARRAY_SIZE;
-            } size between 5 and 20");
+            }
+        }
+        
+        // Add ripple effect to buttons
+        function addRippleEffect(button) {
+            button.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.getBoundingClientRect().left;
+                const y = e.clientY - e.target.getBoundingClientRect().top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
         }
         
         // Event Listeners
         generateBtn.addEventListener('click', () => {
             if (searching) return;
-            generateArray();erateBtn.addEventListener('click', () => {
-        });    if (searching) return;
+            generateArray();
+        });
         
-        searchBtn.addEventListener('click', () => {});
+        searchBtn.addEventListener('click', () => {
             if (searching) return;
-            > {
-            const targetValue = parseInt(searchValueInput.value); if (searching) return;
-            if (isNaN(targetValue)) {    
+            
+            const targetValue = parseInt(searchValueInput.value);
+            if (isNaN(targetValue)) {
                 alert("Please enter a valid number");
-                return;    if (isNaN(targetValue)) {
+                return;
             }
             
             visualizeBinarySearch(targetValue);
         });
-         visualizeBinarySearch(targetValue);
-        resetBtn.addEventListener('click', resetVisualization);});
         
-        speedSelect.addEventListener('change', () => {tListener('click', resetVisualization);
+        resetBtn.addEventListener('click', resetVisualization);
+        
+        speedSelect.addEventListener('change', () => {
             delay = parseInt(speedSelect.value);
-        }); speedSelect.addEventListener('change', () => {
-             delay = parseInt(speedSelect.value);
-
-
-
-
-
-
-
-
-
-
-
-
-
-</html></body>    </script>        generateArray();        // Initialize                });            }                searchBtn.click();            if (e.key === 'Enter') {        searchValueInput.addEventListener('keypress', (e) => {                updateSizeBtn.addEventListener('click', updateArraySize);        });
+        });
         
         updateSizeBtn.addEventListener('click', updateArraySize);
         
@@ -595,8 +1451,33 @@ function binarySearch(arr, target) {
             }
         });
         
+        modeToggle.addEventListener('click', toggleMode);
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
         // Initialize
-        generateArray();
+        window.addEventListener('load', () => {
+            loadThemePreference();
+            createParticles();
+            generateArray();
+        });
     </script>
 </body>
 </html>
