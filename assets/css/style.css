@@ -1,5 +1,6 @@
 /* Main Stylesheet for gautamsh.me */
 :root {
+  /* Light theme variables */
   --primary-color: #2563eb;
   --secondary-color: #3b82f6;
   --accent-color: #60a5fa;
@@ -9,6 +10,17 @@
   --card-background: #ffffff;
   --border-color: #e2e8f0;
   --transition-speed: 0.3s;
+}
+
+[data-theme="dark"] {
+  --primary-color: #3b82f6;
+  --secondary-color: #60a5fa;
+  --accent-color: #93c5fd;
+  --background-color: #0f172a;
+  --text-color: #f1f5f9;
+  --text-light: #94a3b8;
+  --card-background: #1e293b;
+  --border-color: #334155;
 }
 
 * {
@@ -108,6 +120,34 @@ header {
 .hamburger {
   display: none;
   cursor: pointer;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: rotate(15deg);
+}
+
+[data-theme="dark"] .theme-toggle i {
+  transform: rotate(35deg);
+}
+
+[data-theme="dark"] header {
+  background-color: rgba(15, 23, 42, 0.9);
 }
 
 /* Hero section */
