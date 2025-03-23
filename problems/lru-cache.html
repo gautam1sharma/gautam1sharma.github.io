@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRU Cache Problem Solution | Gautam Sharma</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../introduction/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#problem-solving" class="nav-link">Problem Solving</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h1 class="section-title">LRU Cache Problem</h1>
+                
+                <div class="problem-details">
+                    <div class="problem-info" style="margin-bottom: 2rem; background-color: var(--card-bg); padding: 1.5rem; border-radius: 10px;">
+                        <h3>Problem Statement:</h3>
+                        <p>
+                            Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
+                        </p>
+                        <p>
+                            Implement the <code>LRUCache</code> class:
+                        </p>
+                        <ul style="list-style-type: disc; margin-left: 2rem;">
+                            <li><code>LRUCache(int capacity)</code> Initialize the LRU cache with positive size <code>capacity</code>.</li>
+                            <li><code>int get(int key)</code> Return the value of the <code>key</code> if the key exists, otherwise return <code>-1</code>.</li>
+                            <li><code>void put(int key, int value)</code> Update the value of the <code>key</code> if the <code>key</code> exists. Otherwise, add the <code>key-value</code> pair to the cache. If the number of keys exceeds the <code>capacity</code> from this operation, evict the least recently used key.</li>
+                        </ul>
+                        <p>
+                            The functions <code>get</code> and <code>put</code> must each run in <code>O(1)</code> average time complexity.
+                        </p>
+                        
+                        <h4>Example:</h4>
+                        <pre><code>Input
+["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+Output
+[null, null, null, 1, null, -1, null, -1, 3, 4]
+
+Explanation
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // cache is {1=1}
+lRUCache.put(2, 2); // cache is {1=1, 2=2}
+lRUCache.get(1);    // return 1
+lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+lRUCache.get(2);    // returns -1 (not found)
+lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+lRUCache.get(1);    // return -1 (not found)
+lRUCache.get(3);    // return 3
+lRUCache.get(4);    // return 4</code></pre>
+                        
+                        <h4>Constraints:</h4>
+                        <ul style="list-style-type: disc; margin-left: 2rem;">
+                            <li>1 ≤ capacity ≤ 3000</li>
+                            <li>0 ≤ key ≤ 10<sup>4</sup></li>
+                            <li>0 ≤ value ≤ 10<sup>5</sup></li>
+                            <li>At most 2 * 10<sup>5</sup> calls will be made to <code>get</code> and <code>put</code>.</li>
+                        </ul>
+                    </div>
+                    
+                    <h2>Solution:</h2>
+                    <p>
+                        The LRU Cache problem requires us to design a data structure that can efficiently track the least recently used items 
+                        and provide O(1) operations for both get and put. We can achieve this by combining a hash map for O(1) lookups 
+                        with a doubly linked list to maintain the order of usage.
+                    </p>
+                    
+                    <h3>Approach:</h3>
+                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Use a hash map to store key-value pairs for O(1) access.</li>
+                        <li>Use a doubly linked list to track the order of usage (most recently used to least recently used).</li>
+                        <li>When a key is accessed or added, move it to the front of the list (most recently used).</li>
+                        <li>When we need to evict a key, remove the one at the end of the list (least recently used).</li>
+                        <li>Maintain pointers to both ends of the linked list for O(1) operations.</li>
+                    </ol>
+                    
+                    <h3>Code Solution:</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <h4>Python:</h4>
+                        <pre><code class="language-python">class DLinkedNode:
+    def __init__(self, key=0, value=0):
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cache = {}  # Map key to node
+        self.size = 0
+        self.capacity = capacity
+        self.head = DLinkedNode()  # Dummy head
+        self.tail = DLinkedNode()  # Dummy tail
+        
+        # Connect head and tail
+        self.head.next = self.tail
+        self.tail.prev = self.head
+    
+    # Add node right after head
+    def _add_node(self, node):
+        node.prev = self.head
+        node.next = self.head.next
+        
+        self.head.next.prev = node
+        self.head.next = node
+    
+    # Remove a node from the linked list
+    def _remove_node(self, node):
+        prev = node.prev
+        next = node.next
+        
+        prev.next = next
+        next.prev = prev
+    
+    # Move a node to the head (mark as most recently used)
+    def _move_to_head(self, node):
+        self._remove_node(node)
+        self._add_node(node)
+    
+    # Remove the tail node (least recently used)
+    def _pop_tail(self):
+        res = self.tail.prev
+        self._remove_node(res)
+        return res
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        
+        # Get the node from the cache
+        node = self.cache[key]
+        
+        # Move to head (mark as recently used)
+        self._move_to_head(node)
+        
+        return node.value
+
+    def put(self, key: int, value: int) -> None:
+        # If key already exists, update its value and move to head
+        if key in self.cache:
+            node = self.cache[key]
+            node.value = value
+            self._move_to_head(node)
+            return
+        
+        # Create a new node
+        new_node = DLinkedNode(key, value)
+        
+        # Add to the cache and the linked list
+        self.cache[key] = new_node
+        self._add_node(new_node)
+        
+        self.size += 1
+        
+        # Check if we need to evict
+        if self.size > self.capacity:
+            # Remove the least recently used node (tail)
+            tail = self._pop_tail()
+            del self.cache[tail.key]
+            self.size -= 1</code></pre>
+                        
+                        <h4>JavaScript:</h4>
+                        <pre><code class="language-javascript">/**
+ * @param {number} capacity
+ */
+var LRUCache = function(capacity) {
+    this.capacity = capacity;
+    this.cache = new Map();
+    
+    // Initialize the doubly linked list with dummy head and tail
+    this.head = {key: 0, value: 0};
+    this.tail = {key: 0, value: 0};
+    this.head.next = this.tail;
+    this.tail.prev = this.head;
+};
+
+/**
+ * @param {number} key
+ * @return {number}
+ */
+LRUCache.prototype.get = function(key) {
+    if (!this.cache.has(key)) return -1;
+    
+    // Get the node from the cache
+    const node = this.cache.get(key);
+    
+    // Move to head (mark as recently used)
+    this._removeNode(node);
+    this._addToHead(node);
+    
+    return node.value;
+};
+
+/**
+ * @param {number} key 
+ * @param {number} value
+ * @return {void}
+ */
+LRUCache.prototype.put = function(key, value) {
+    // If key already exists, update its value and move to head
+    if (this.cache.has(key)) {
+        const node = this.cache.get(key);
+        node.value = value;
+        
+        this._removeNode(node);
+        this._addToHead(node);
+        return;
+    }
+    
+    // Create a new node
+    const newNode = {key, value};
+    
+    // Add to the cache and the linked list
+    this.cache.set(key, newNode);
+    this._addToHead(newNode);
+    
+    // Check if we need to evict
+    if (this.cache.size > this.capacity) {
+        // Remove the least recently used node (tail)
+        const tailNode = this.tail.prev;
+        this._removeNode(tailNode);
+        this.cache.delete(tailNode.key);
+    }
+};
+
+/**
+ * Add node right after head
+ */
+LRUCache.prototype._addToHead = function(node) {
+    node.prev = this.head;
+    node.next = this.head.next;
+    
+    this.head.next.prev = node;
+    this.head.next = node;
+};
+
+/**
+ * Remove a node from the linked list
+ */
+LRUCache.prototype._removeNode = function(node) {
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+};</code></pre>
+                    </div>
+                    
+                    <h3>Time and Space Complexity:</h3>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Time Complexity:</strong> O(1) for both get and put operations.</li>
+                        <li><strong>Space Complexity:</strong> O(capacity) to store up to capacity key-value pairs.</li>
+                    </ul>
+                    
+                    <h3>Explanation:</h3>
+                    <p>
+                        The key insight to this problem is to use a combination of a hash map and a doubly linked list:
+                    </p>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                        <li>The hash map provides O(1) lookup of cache entries by key.</li>
+                        <li>The doubly linked list maintains the order of usage, with the most recently used at the head and least recently used at the tail.</li>
+                    </ul>
+                    <p>
+                        When we access an element via <code>get()</code> or update it via <code>put()</code>, we move it to the front of the list,
+                        marking it as the most recently used.
+                    </p>
+                    <p>
+                        When we need to evict an element because the cache is full, we remove the element at the end of the list
+                        (the least recently used).
+                    </p>
+                    <p>
+                        Using a doubly linked list allows us to add and remove nodes in O(1) time, as long as we have a reference
+                        to the node. The hash map gives us this reference directly.
+                    </p>
+                    <p>
+                        The dummy head and tail nodes simplify our code by eliminating edge cases when adding or removing nodes
+                        from either end of the list.
+                    </p>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="../index.html#problem-solving" class="btn">Back to Problems</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gautam Sharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

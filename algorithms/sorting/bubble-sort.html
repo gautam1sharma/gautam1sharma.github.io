@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Sort Visualization | Gautam Sharma</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../algorithms.css">
+    <link rel="icon" href="../../introduction/favicon.ico" type="image/x-icon">
+    <style>
+        .visualization-container {
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .array-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .array-bar {
+            width: 30px;
+            margin: 0 2px;
+            background-color: #3b82f6;
+            transition: height 0.2s ease;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .code-container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-container pre {
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', monospace;
+            line-height: 1.5;
+        }
+        
+        .current-line {
+            background-color: rgba(86, 156, 214, 0.2);
+            display: block;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .comparing { background-color: #facc15; }
+        .sorted { background-color: #4ade80; }
+        .default { background-color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+                <ul class="nav-menu">
+                    <li><a href="../../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../../index.html#problem-solving" class="nav-link">Problem Solving</a></li>
+                    <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h1 class="section-title">Bubble Sort Visualization</h1>
+                
+                <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                    <p>
+                        Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, 
+                        and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
+                    </p>
+                </div>
+                
+                <div class="visualization-container">
+                    <div class="controls">
+                        <button id="generate-btn" class="btn">Generate New Array</button>
+                        <button id="sort-btn" class="btn">Sort</button>
+                        <button id="reset-btn" class="btn">Reset</button>
+                        <select id="speed-select" class="btn">
+                            <option value="100">Slow</option>
+                            <option value="50" selected>Medium</option>
+                            <option value="10">Fast</option>
+                        </select>
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color default"></div>
+                            <span>Unsorted</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color comparing"></div>
+                            <span>Comparing</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color sorted"></div>
+                            <span>Sorted</span>
+                        </div>
+                    </div>
+                    
+                    <div class="array-container" id="array-container"></div>
+                    
+                    <div class="code-container">
+                        <pre id="code-display">
+function bubbleSort(arr) {
+    const n = arr.length;
+    let swapped;
+    
+    for (let i = 0; i < n; i++) {
+        swapped = false;
+        
+        for (let j = 0; j < n - i - 1; j++) {
+            // Compare adjacent elements
+            if (arr[j] > arr[j + 1]) {
+                // Swap them if they are in wrong order
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                swapped = true;
+            }
+        }
+        
+        // If no swapping occurred in this pass, the array is sorted
+        if (!swapped) break;
+    }
+    
+    return arr;
+}</pre>
+                    </div>
+                </div>
+                
+                <div class="algorithm-details">
+                    <h2>How Bubble Sort Works</h2>
+                    <p>
+                        Bubble Sort works by repeatedly stepping through the list, comparing adjacent elements, and swapping them if they are in the wrong order.
+                        The algorithm gets its name because smaller elements "bubble" to the top of the list with each iteration.
+                    </p>
+                    
+                    <h3>Algorithm Steps:</h3>
+                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Start from the beginning of the array.</li>
+                        <li>Compare adjacent elements. If the first is greater than the second, swap them.</li>
+                        <li>Move to the next pair of adjacent elements and repeat step 2.</li>
+                        <li>After reaching the end of the array, one pass is complete.</li>
+                        <li>Repeat steps 1-4 until no more swaps are needed.</li>
+                    </ol>
+                    
+                    <h3>Time and Space Complexity:</h3>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Time Complexity:</strong>
+                            <ul>
+                                <li>Worst Case: O(n²) - Occurs when the array is reverse sorted.</li>
+                                <li>Average Case: O(n²)</li>
+                                <li>Best Case: O(n) - Occurs when the array is already sorted and the algorithm makes only one pass.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Complexity:</strong> O(1) - Bubble Sort is an in-place sorting algorithm.</li>
+                    </ul>
+                    
+                    <h3>Advantages and Disadvantages:</h3>
+                    <h4>Advantages:</h4>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;">
+                        <li>Simple to understand and implement</li>
+                        <li>Works well for small datasets</li>
+                        <li>Uses minimal extra memory (in-place)</li>
+                    </ul>
+                    
+                    <h4>Disadvantages:</h4>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Very inefficient for large datasets</li>
+                        <li>Significantly slower than more advanced algorithms like Quick Sort or Merge Sort</li>
+                    </ul>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="../index.html" class="btn">Back to Algorithms</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gautam Sharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const arrayContainer = document.getElementById('array-container');
+        const generateBtn = document.getElementById('generate-btn');
+        const sortBtn = document.getElementById('sort-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const speedSelect = document.getElementById('speed-select');
+        const codeDisplay = document.getElementById('code-display');
+        
+        // Configuration
+        const ARRAY_SIZE = 15;
+        const MIN_VALUE = 5;
+        const MAX_VALUE = 100;
+        let array = [];
+        let arrayBars = [];
+        let sorting = false;
+        let originalArray = [];
+        let delay = parseInt(speedSelect.value);
+        
+        // Create a new random array
+        function generateArray() {
+            array = [];
+            originalArray = [];
+            for (let i = 0; i < ARRAY_SIZE; i++) {
+                const value = Math.floor(Math.random() * (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
+                array.push(value);
+                originalArray.push(value);
+            }
+        }
+        
+        // Display the array as bars
+        function displayArray() {
+            arrayContainer.innerHTML = '';
+            arrayBars = [];
+            
+            const maxValue = Math.max(...array);
+            const containerHeight = 300;
+            
+            for (let i = 0; i < array.length; i++) {
+                const bar = document.createElement('div');
+                bar.classList.add('array-bar');
+                
+                const height = (array[i] / maxValue) * containerHeight;
+                bar.style.height = `${height}px`;
+                
+                const valueLabel = document.createElement('span');
+                valueLabel.textContent = array[i];
+                valueLabel.style.position = 'absolute';
+                valueLabel.style.bottom = '-25px';
+                valueLabel.style.fontSize = '12px';
+                
+                bar.style.position = 'relative';
+                bar.appendChild(valueLabel);
+                
+                arrayContainer.appendChild(bar);
+                arrayBars.push(bar);
+            }
+        }
+        
+        // Reset the array to its original state
+        function resetArray() {
+            if (sorting) return;
+            array = [...originalArray];
+            displayArray();
+            highlightCodeLine(null);
+        }
+        
+        // Highlight specific line in code display
+        function highlightCodeLine(lineIndex) {
+            const codeLines = codeDisplay.innerHTML.split('\n');
+            let highlightedCode = '';
+            
+            for (let i = 0; i < codeLines.length; i++) {
+                if (i === lineIndex) {
+                    highlightedCode += `<span class="current-line">${codeLines[i]}</span>\n`;
+                } else {
+                    highlightedCode += codeLines[i] + '\n';
+                }
+            }
+            
+            codeDisplay.innerHTML = highlightedCode;
+        }
+        
+        // Sleep function for animation delay
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
+        // Bubble Sort Algorithm with visualization
+        async function bubbleSort() {
+            if (sorting) return;
+            sorting = true;
+            
+            const n = array.length;
+            
+            highlightCodeLine(0); // function declaration
+            await sleep(delay);
+            
+            highlightCodeLine(1); // const n = arr.length
+            await sleep(delay);
+            
+            highlightCodeLine(2); // let swapped
+            await sleep(delay);
+            
+            for (let i = 0; i < n; i++) {
+                highlightCodeLine(4); // for loop i
+                await sleep(delay);
+                
+                highlightCodeLine(5); // swapped = false
+                let swapped = false;
+                await sleep(delay);
+                
+                for (let j = 0; j < n - i - 1; j++) {
+                    highlightCodeLine(7); // for loop j
+                    await sleep(delay);
+                    
+                    // Highlight bars being compared
+                    arrayBars[j].classList.add('comparing');
+                    arrayBars[j + 1].classList.add('comparing');
+                    
+                    highlightCodeLine(9); // if comparison
+                    await sleep(delay);
+                    
+                    if (array[j] > array[j + 1]) {
+                        highlightCodeLine(11); // swap
+                        
+                        // Swap elements in the array
+                        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+                        
+                        // Update the visual representation
+                        const tempHeight = arrayBars[j].style.height;
+                        arrayBars[j].style.height = arrayBars[j + 1].style.height;
+                        arrayBars[j + 1].style.height = tempHeight;
+                        
+                        // Update the value labels
+                        arrayBars[j].querySelector('span').textContent = array[j];
+                        arrayBars[j + 1].querySelector('span').textContent = array[j + 1];
+                        
+                        highlightCodeLine(12); // swapped = true
+                        swapped = true;
+                        await sleep(delay);
+                    }
+                    
+                    // Remove highlight from compared bars
+                    arrayBars[j].classList.remove('comparing');
+                    arrayBars[j + 1].classList.remove('comparing');
+                }
+                
+                // Mark the last sorted element
+                arrayBars[n - i - 1].classList.add('sorted');
+                
+                highlightCodeLine(16); // if (!swapped) break
+                await sleep(delay);
+                
+                if (!swapped) {
+                    // If no swaps occurred, the array is sorted
+                    break;
+                }
+            }
+            
+            // Mark all elements as sorted
+            for (const bar of arrayBars) {
+                if (!bar.classList.contains('sorted')) {
+                    bar.classList.add('sorted');
+                    await sleep(delay / 2);
+                }
+            }
+            
+            highlightCodeLine(20); // return arr
+            await sleep(delay);
+            
+            sorting = false;
+        }
+        
+        // Event Listeners
+        generateBtn.addEventListener('click', () => {
+            if (sorting) return;
+            generateArray();
+            displayArray();
+            highlightCodeLine(null);
+        });
+        
+        sortBtn.addEventListener('click', () => {
+            if (!sorting) bubbleSort();
+        });
+        
+        resetBtn.addEventListener('click', resetArray);
+        
+        speedSelect.addEventListener('change', () => {
+            delay = parseInt(speedSelect.value);
+        });
+        
+        // Initialize
+        generateArray();
+        displayArray();
+    </script>
+</body>
+</html>

@@ -11,16 +11,14 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="../index.html">Gautam Sharma</a>
-            </div>
-            <nav>
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
                 <ul class="nav-menu">
                     <li><a href="../index.html" class="nav-link">Home</a></li>
-                    <li><a href="../introduction/about.html" class="nav-link">About</a></li>
-                    <li><a href="../index.html#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#problem-solving" class="nav-link">Problem Solving</a></li>
                     <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
-                    <li><a href="index.html" class="nav-link active">Algorithms</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -32,77 +30,121 @@
     </header>
 
     <main>
-        <section class="algorithms-hero">
+        <section class="section" style="padding-top: 120px;">
             <div class="container">
-                <h1 class="animate-on-scroll">Algorithm Visualizer</h1>
-                <p class="animate-on-scroll">Interactive visualizations of classic computer science algorithms</p>
-            </div>
-        </section>
-
-        <section class="algorithm-list">
-            <div class="container">
-                <h2>Sorting Algorithms</h2>
-                <div class="algorithm-grid">
-                    <a href="sorting/bubble-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Bubble Sort</h3>
-                        <p>A simple comparison-based sorting algorithm</p>
-                    </a>
-                    <a href="sorting/quick-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Quick Sort</h3>
-                        <p>An efficient divide-and-conquer sorting algorithm</p>
-                    </a>
-                    <a href="sorting/merge-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Merge Sort</h3>
-                        <p>A stable, divide-and-conquer comparison-based sorting algorithm</p>
-                    </a>
-                    <a href="sorting/insertion-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Insertion Sort</h3>
-                        <p>A simple sorting algorithm that builds the sorted array one item at a time</p>
-                    </a>
-                    <a href="sorting/selection-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Selection Sort</h3>
-                        <p>An in-place comparison sorting algorithm</p>
-                    </a>
-                    <a href="sorting/heap-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Heap Sort</h3>
-                        <p>A comparison-based sorting algorithm using binary heap data structure</p>
-                    </a>
-                    <a href="sorting/tim-sort.html" class="algorithm-card animate-on-scroll">
-                        <h3>Tim Sort</h3>
-                        <p>A hybrid stable sorting algorithm derived from merge sort and insertion sort</p>
-                    </a>
+                <h1 class="section-title">Algorithm Visualizer</h1>
+                
+                <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                    <p>
+                        Interactive visualizations of classic computer science algorithms to help understand 
+                        how they work step by step.
+                    </p>
                 </div>
-
-                <h2>Search Algorithms</h2>
-                <div class="algorithm-grid">
-                    <a href="search/linear-search.html" class="algorithm-card animate-on-scroll">
-                        <h3>Linear Search</h3>
-                        <p>A simple search algorithm that finds an element in a list</p>
-                    </a>
-                    <a href="search/binary-search.html" class="algorithm-card animate-on-scroll">
-                        <h3>Binary Search</h3>
-                        <p>An efficient search algorithm that finds an element in a sorted array</p>
-                    </a>
-                    <a href="search/depth-first-search.html" class="algorithm-card animate-on-scroll">
-                        <h3>Depth-First Search</h3>
-                        <p>Algorithm for traversing or searching tree or graph data structures</p>
-                    </a>
-                    <a href="search/breadth-first-search.html" class="algorithm-card animate-on-scroll">
-                        <h3>Breadth-First Search</h3>
-                        <p>Algorithm for traversing or searching tree or graph data structures</p>
-                    </a>
-                </div>
-
-                <h2>Path Finding Algorithms</h2>
-                <div class="algorithm-grid">
-                    <a href="pathfinding/dijkstra.html" class="algorithm-card animate-on-scroll">
-                        <h3>Dijkstra's Algorithm</h3>
-                        <p>Algorithm for finding the shortest paths between nodes in a graph</p>
-                    </a>
-                    <a href="pathfinding/a-star.html" class="algorithm-card animate-on-scroll">
-                        <h3>A* Search</h3>
-                        <p>A path search algorithm that uses heuristics to find the shortest path</p>
-                    </a>
+                
+                <div class="algorithm-categories">
+                    <h2>Sorting Algorithms</h2>
+                    <div class="algorithm-grid">
+                        <a href="sorting/bubble-sort.html" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Bubble Sort</h3>
+                                <p>A simple comparison-based sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(n²)</span>
+                                    <span class="complexity">Space: O(1)</span>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Quick Sort</h3>
+                                <p>An efficient divide-and-conquer sorting algorithm that works by selecting a 'pivot' element and partitioning the array around the pivot.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(n log n)</span>
+                                    <span class="complexity">Space: O(log n)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Merge Sort</h3>
+                                <p>A stable, divide-and-conquer comparison-based sorting algorithm that divides the input array into two halves, sorts them, and then merges them.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(n log n)</span>
+                                    <span class="complexity">Space: O(n)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <h2>Search Algorithms</h2>
+                    <div class="algorithm-grid">
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Binary Search</h3>
+                                <p>An efficient search algorithm that finds the position of a target value within a sorted array by repeatedly dividing the search interval in half.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(log n)</span>
+                                    <span class="complexity">Space: O(1)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Depth-First Search</h3>
+                                <p>An algorithm for traversing or searching tree or graph data structures that explores as far as possible along each branch before backtracking.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(V + E)</span>
+                                    <span class="complexity">Space: O(V)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Breadth-First Search</h3>
+                                <p>An algorithm for traversing or searching tree or graph data structures that explores all neighbors at the present depth before moving on to nodes at the next depth level.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(V + E)</span>
+                                    <span class="complexity">Space: O(V)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <h2>Path Finding Algorithms</h2>
+                    <div class="algorithm-grid">
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>Dijkstra's Algorithm</h3>
+                                <p>An algorithm for finding the shortest paths between nodes in a graph, which may represent road networks, computer networks, etc.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(V² + E)</span>
+                                    <span class="complexity">Space: O(V)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="algorithm-card">
+                            <div class="algorithm-card-content">
+                                <h3>A* Search</h3>
+                                <p>A path search algorithm that uses heuristics to find the shortest path from a start node to a target node. It combines the advantages of Dijkstra's and greedy best-first search.</p>
+                                <div class="algorithm-complexity">
+                                    <span class="complexity">Time: O(E)</span>
+                                    <span class="complexity">Space: O(V)</span>
+                                </div>
+                                <div class="coming-soon-badge">Coming Soon</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -110,10 +152,51 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Gautam Sharma. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Gautam Sharma</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 1rem;">
+                        A passionate developer sharing solutions to complex problems.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../index.html">Home</a></li>
+                        <li class="footer-link"><a href="../index.html#about">About</a></li>
+                        <li class="footer-link"><a href="../index.html#projects">Projects</a></li>
+                        <li class="footer-link"><a href="../index.html#problem-solving">Problem Solving</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="../problems/index.html">Problem Solutions</a></li>
+                        <li class="footer-link"><a href="../data-structures/index.html">Data Structures</a></li>
+                        <li class="footer-link"><a href="../blog/index.html">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="currentYear">2025</span> Gautam Sharma. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <script src="../assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>

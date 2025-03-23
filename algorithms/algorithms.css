@@ -12,7 +12,7 @@
     margin-bottom: 1rem;
 }
 
-.algorithms-hero p {
+algorithms-hero p {
     font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto;
@@ -37,6 +37,98 @@
     width: 100px;
     height: 3px;
     background: #4ca1af;
+}
+
+/* Algorithms Section Styles */
+:root {
+    --algorithm-card-bg: #1f2937;
+    --algorithm-card-hover: #2d3748;
+    --complexity-badge-bg: #4b5563;
+}
+
+.algorithm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.algorithm-card {
+    background-color: var(--algorithm-card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: var(--text-color);
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.algorithm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: var(--algorithm-card-hover);
+}
+
+.algorithm-card-content {
+    padding: 1.5rem;
+}
+
+.algorithm-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-color);
+}
+
+.algorithm-card p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    color: #d1d5db;
+}
+
+.algorithm-complexity {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.complexity {
+    background-color: var(--complexity-badge-bg);
+    color: #e5e7eb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #9f1239;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0 0 0 8px;
+}
+
+.algorithm-categories h2 {
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.algorithm-categories h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
 }
 
 .algorithm-grid {
@@ -244,6 +336,20 @@
     
     .visualization-container {
         height: 300px;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .algorithm-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .algorithm-grid {
+        grid-template-columns: 1fr;
     }
 }
 

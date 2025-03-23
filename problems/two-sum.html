@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum Problem Solution | Gautam Sharma</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../introduction/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+                <ul class="nav-menu">
+                    <li><a href="../index.html" class="nav-link">Home</a></li>
+                    <li><a href="../index.html#about" class="nav-link">About</a></li>
+                    <li><a href="../index.html#projects" class="nav-link">Projects</a></li>
+                    <li><a href="../index.html#problem-solving" class="nav-link">Problem Solving</a></li>
+                    <li><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h1 class="section-title">Two Sum Problem</h1>
+                
+                <div class="problem-details">
+                    <div class="problem-info" style="margin-bottom: 2rem; background-color: var(--card-bg); padding: 1.5rem; border-radius: 10px;">
+                        <h3>Problem Statement:</h3>
+                        <p>
+                            Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.
+                        </p>
+                        <p>
+                            You may assume that each input would have exactly one solution, and you may not use the same element twice.
+                            You can return the answer in any order.
+                        </p>
+                        
+                        <h4>Example 1:</h4>
+                        <pre><code>Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].</code></pre>
+                        
+                        <h4>Example 2:</h4>
+                        <pre><code>Input: nums = [3,2,4], target = 6
+Output: [1,2]</code></pre>
+                        
+                        <h4>Example 3:</h4>
+                        <pre><code>Input: nums = [3,3], target = 6
+Output: [0,1]</code></pre>
+                        
+                        <h4>Constraints:</h4>
+                        <ul style="list-style-type: disc; margin-left: 2rem;">
+                            <li>2 ≤ nums.length ≤ 10<sup>4</sup></li>
+                            <li>-10<sup>9</sup> ≤ nums[i] ≤ 10<sup>9</sup></li>
+                            <li>-10<sup>9</sup> ≤ target ≤ 10<sup>9</sup></li>
+                            <li>Only one valid answer exists.</li>
+                        </ul>
+                    </div>
+                    
+                    <h2>Solution:</h2>
+                    <p>
+                        The Two Sum problem can be solved efficiently using a hash map to track the numbers we've seen 
+                        and check if their complement (target - current number) has been seen before.
+                    </p>
+                    
+                    <h3>Approach:</h3>
+                    <ol style="margin-left: 2rem; margin-bottom: 2rem;">
+                        <li>Initialize an empty hash map to store numbers and their indices.</li>
+                        <li>Iterate through the array.</li>
+                        <li>For each number, calculate its complement (target - number).</li>
+                        <li>If the complement exists in the hash map, we've found our answer.</li>
+                        <li>Otherwise, add the current number and its index to the hash map.</li>
+                    </ol>
+                    
+                    <h3>Code Solution:</h3>
+                    <div style="margin-bottom: 2rem;">
+                        <h4>Python:</h4>
+                        <pre><code class="language-python">def twoSum(nums, target):
+    # Create a hash map to store numbers and their indices
+    num_map = {}
+    
+    # Iterate through the array
+    for i, num in enumerate(nums):
+        # Calculate the complement
+        complement = target - num
+        
+        # Check if the complement exists in the hash map
+        if complement in num_map:
+            # Return the indices of both numbers
+            return [num_map[complement], i]
+        
+        # Add the current number and its index to the hash map
+        num_map[num] = i
+    
+    # If no solution found (though problem guarantees one exists)
+    return []</code></pre>
+                        
+                        <h4>JavaScript:</h4>
+                        <pre><code class="language-javascript">/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+    // Create a map to store numbers and their indices
+    const numMap = new Map();
+    
+    // Iterate through the array
+    for (let i = 0; i < nums.length; i++) {
+        // Calculate the complement
+        const complement = target - nums[i];
+        
+        // Check if the complement exists in the map
+        if (numMap.has(complement)) {
+            // Return the indices of both numbers
+            return [numMap.get(complement), i];
+        }
+        
+        // Add the current number and its index to the map
+        numMap.set(nums[i], i);
+    }
+    
+    // If no solution found (though problem guarantees one exists)
+    return [];
+};</code></pre>
+                    </div>
+                    
+                    <h3>Time and Space Complexity:</h3>
+                    <ul style="list-style-type: disc; margin-left: 2rem; margin-bottom: 2rem;">
+                        <li><strong>Time Complexity:</strong> O(n) - We traverse the list containing n elements only once.</li>
+                        <li><strong>Space Complexity:</strong> O(n) - The extra space required depends on the number of items stored in the hash table, which could be up to n elements.</li>
+                    </ul>
+                    
+                    <h3>Explanation:</h3>
+                    <p>
+                        This solution uses a hash map to achieve O(1) lookups for complements, allowing us to solve the problem in a single pass through the array.
+                        For each number, we check if its complement (target - number) is already in our hash map. If it is, we've found our pair.
+                        If not, we add the current number to the hash map and continue.
+                    </p>
+                    <p>
+                        This is much more efficient than the brute force approach of checking all possible pairs with nested loops,
+                        which would have a time complexity of O(n²).
+                    </p>
+                    
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="../index.html#problem-solving" class="btn">Back to Problems</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gautam Sharma. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>
