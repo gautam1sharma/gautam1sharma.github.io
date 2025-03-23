@@ -20,20 +20,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;  /* Changed from wrap to nowrap */
             min-height: 200px;
             margin: 2rem 0;
             position: relative;
+            overflow-x: auto;  /* Added overflow-x to allow horizontal scrolling if needed */
+            padding: 2rem 1rem;  /* Added padding for better spacing */
         }
         
         .array-element {
-            width: 50px;
+            min-width: 50px;  /* Changed width to min-width */
             height: 50px;
             margin: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #3b82f6;
+            background-color: #64748b;  /* Changed to match new default color */
             color: white;
             font-weight: bold;
             border-radius: 5px;
@@ -104,10 +106,10 @@
         .current { background-color: #facc15; }
         .low { background-color: #ef4444; }
         .mid { background-color: #8b5cf6; }
-        .high { background-color: #10b981; }
+        .high { background-color: #3b82f6; }  /* Changed from #10b981 to blue */
         .found { background-color: #22c55e; }
         .not-found { background-color: #f87171; }
-        .default { background-color: #3b82f6; }
+        .default { background-color: #64748b; } /* Changed from #3b82f6 to a darker shade */
         
         .search-info {
             margin: 1rem 0;
@@ -116,21 +118,6 @@
             border-radius: 5px;
             text-align: center;
             min-height: 80px;
-        }
-        
-        .array-size-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .array-size-container label {
-            font-weight: bold;
-        }
-        
-        .array-size-container input {
-            width: 60px;
         }
         
         @media (max-width: 768px) {
@@ -393,6 +380,8 @@ function binarySearch(arr, target) {
             
             arrayElements.forEach(element => {
                 element.classList.remove('current', 'low', 'mid', 'high', 'found', 'not-found');
+                // Reset to default color
+                element.style.backgroundColor = '';
             });
             
             highlightCodeLine(null);
