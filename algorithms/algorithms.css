@@ -1,0 +1,265 @@
+/* CSS for Algorithm Visualizer Section */
+
+.algorithms-hero {
+    background: linear-gradient(to right, #2c3e50, #4ca1af);
+    color: white;
+    padding: 100px 0 60px;
+    text-align: center;
+}
+
+.algorithms-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.algorithms-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.algorithm-list {
+    padding: 60px 0;
+}
+
+.algorithm-list h2 {
+    margin-bottom: 30px;
+    color: #2c3e50;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.algorithm-list h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: #4ca1af;
+}
+
+.algorithm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.algorithm-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: #333;
+}
+
+.algorithm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.algorithm-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.algorithm-card p {
+    color: #666;
+    margin: 0;
+}
+
+/* Algorithm Visualization Page Styles */
+.algorithm-container {
+    padding: 40px 0;
+}
+
+.algorithm-info {
+    margin-bottom: 40px;
+}
+
+.algorithm-info h1 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.algorithm-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.algorithm-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f5f7fa;
+    border-radius: 8px;
+}
+
+.algorithm-controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #4ca1af;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.algorithm-controls button:hover {
+    background: #2c3e50;
+}
+
+.algorithm-controls input,
+.algorithm-controls select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.visualization-container {
+    width: 100%;
+    height: 400px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.array-bar {
+    position: absolute;
+    bottom: 0;
+    background: #4ca1af;
+    transition: height 0.3s, transform 0.3s, background 0.3s;
+}
+
+.array-bar.comparing {
+    background: #e74c3c;
+}
+
+.array-bar.sorted {
+    background: #2ecc71;
+}
+
+.array-element {
+    position: absolute;
+    background: #4ca1af;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.array-element.visited {
+    background: #e74c3c;
+}
+
+.array-element.found {
+    background: #2ecc71;
+}
+
+.path-node {
+    position: absolute;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: background 0.3s;
+}
+
+.path-node.wall {
+    background: #34495e;
+}
+
+.path-node.start {
+    background: #2ecc71;
+}
+
+.path-node.end {
+    background: #e74c3c;
+}
+
+.path-node.visited {
+    background: #3498db;
+}
+
+.path-node.path {
+    background: #f1c40f;
+}
+
+.algorithm-code {
+    margin-top: 40px;
+    background: #f5f7fa;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.algorithm-code pre {
+    margin: 0;
+    color: #333;
+}
+
+.algo-complexity {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.complexity-item {
+    background: #f5f7fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.complexity-item h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.complexity-item p {
+    color: #4ca1af;
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .algorithm-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .algorithm-controls {
+        flex-direction: column;
+    }
+    
+    .visualization-container {
+        height: 300px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}

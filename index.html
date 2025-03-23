@@ -1,18 +1,367 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gautam Sharma | Personal Website</title>
+    <meta name="description" content="Personal website of Gautam Sharma, showcasing projects, skills, and problem-solving solutions.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        *{font-family: Lexend, "Times New Roman", Times, serif;}
-    </style>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./introduction/favicon.ico">
-
 </head>
 <body>
-    <h1>Home</h1>
-    <h2 style="font-weight: 250;">Welcome to the home page.</h2>
-    <p><a href="./introduction/about.html">About</a></p>
+    <!-- Header / Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Gautam<span style="color: var(--accent-color)">.</span></a>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#problem-solving" class="nav-link">Problem Solving</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-subtitle animate-on-scroll">Hello, I'm</p>
+                <h1 class="hero-title animate-on-scroll">Gautam Sharma</h1>
+                <p class="hero-description animate-on-scroll">
+                    A passionate developer focused on creating elegant solutions to complex problems.
+                    I share my knowledge through code examples and problem-solving techniques.
+                </p>
+                <div class="hero-buttons animate-on-scroll">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h3>Who I Am</h3>
+                    <p>
+                        I'm a software developer with a passion for problem-solving and creating efficient solutions. 
+                        I created this website to share my solutions to complex problems from various sources and 
+                        explain my reasoning behind them.
+                    </p>
+                    <p>
+                        Beyond coding, I'm constantly learning and improving my skills in web development and algorithms.
+                        This website serves as both a portfolio of my work and a knowledge base of problem-solving techniques.
+                    </p>
+                    <h3>My Skills</h3>
+                    <div class="skills">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">Algorithms</span>
+                        <span class="skill-tag">Problem Solving</span>
+                        <span class="skill-tag">Web Development</span>
+                    </div>
+                </div>
+                <div class="animate-on-scroll">
+                    <div style="background-color: var(--accent-color); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">
+                        <i class="fas fa-user-circle" style="font-size: 8rem; margin-right: 1rem;"></i>
+                        <div>
+                            <p>Gautam Sharma</p>
+                            <p style="font-size: 1rem; font-weight: 400; margin-top: 0.5rem;">Software Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            
+            <div class="projects-filter animate-on-scroll" style="text-align: center; margin-bottom: 2rem;">
+                <button class="btn filter-btn active" data-filter="all">All</button>
+                <button class="btn filter-btn" data-filter="web">Web</button>
+                <button class="btn filter-btn" data-filter="algorithm">Algorithms</button>
+                <button class="btn filter-btn" data-filter="software">Software</button>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card web animate-on-scroll">
+                    <div style="height: 200px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-globe" style="font-size: 4rem; color: white;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Personal Website</h3>
+                        <p class="project-description">
+                            A responsive personal website built with HTML, CSS, and JavaScript to showcase projects and problem-solving skills.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <a href="#" class="project-link">Visit Site <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card algorithm animate-on-scroll">
+                    <div style="height: 200px; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-code" style="font-size: 4rem; color: white;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Algorithm Visualizer</h3>
+                        <p class="project-description">
+                            Interactive tool for visualizing various sorting and pathfinding algorithms to help understand their mechanics.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Algorithms</span>
+                            <span class="project-tag">Canvas</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card software animate-on-scroll">
+                    <div style="height: 200px; background-color: var(--accent-color); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-laptop-code" style="font-size: 4rem; color: white;"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Problem Solver App</h3>
+                        <p class="project-description">
+                            An application that provides solutions and explanations for complex programming problems and algorithms.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">API</span>
+                        </div>
+                        <a href="#" class="project-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Solving Section -->
+    <section id="problem-solving" class="section">
+        <div class="container">
+            <h2 class="section-title">Problem Solving</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                <p class="animate-on-scroll">
+                    I enjoy tackling complex problems and sharing my solutions. Here are some of the challenging 
+                    problems I've solved with detailed explanations of my approach.
+                </p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Problem 1 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-content">
+                        <h3 class="project-title">Two Sum Problem</h3>
+                        <p class="project-description">
+                            Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Array</span>
+                            <span class="project-tag">Hash Table</span>
+                            <span class="project-tag">Easy</span>
+                        </div>
+                        <a href="#" class="project-link">View Solution <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Problem 2 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-content">
+                        <h3 class="project-title">Merge Intervals</h3>
+                        <p class="project-description">
+                            Given a collection of intervals, merge all overlapping intervals and return the non-overlapping intervals.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Array</span>
+                            <span class="project-tag">Sorting</span>
+                            <span class="project-tag">Medium</span>
+                        </div>
+                        <a href="#" class="project-link">View Solution <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Problem 3 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-content">
+                        <h3 class="project-title">LRU Cache</h3>
+                        <p class="project-description">
+                            Design and implement a data structure for Least Recently Used (LRU) cache with O(1) operations.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Hash Table</span>
+                            <span class="project-tag">Linked List</span>
+                            <span class="project-tag">Hard</span>
+                        </div>
+                        <a href="#" class="project-link">View Solution <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn animate-on-scroll">View More Problems</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">
+                <p class="animate-on-scroll">
+                    Feel free to reach out if you have any questions about my work, want to collaborate,
+                    or just want to say hello!
+                </p>
+            </div>
+            
+            <form id="contactForm" class="contact-form animate-on-scroll">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Gautam Sharma</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 1rem;">
+                        A passionate developer sharing solutions to complex problems.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="far fa-envelope"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Home</a></li>
+                        <li class="footer-link"><a href="#about">About</a></li>
+                        <li class="footer-link"><a href="#projects">Projects</a></li>
+                        <li class="footer-link"><a href="#problem-solving">Problem Solving</a></li>
+                        <li class="footer-link"><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="./introduction/about.html">About Page</a></li>
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">Algorithms</a></li>
+                        <li class="footer-link"><a href="#">Data Structures</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="currentYear">2025</span> Gautam Sharma. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./assets/js/main.js"></script>
+    
+    <!-- Current year for footer -->
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+    
+    <!-- Hamburger menu HTML -->
+    <style>
+        .hamburger {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 30px;
+                height: 21px;
+                cursor: pointer;
+                z-index: 10;
+            }
+            
+            .bar {
+                display: block;
+                width: 100%;
+                height: 3px;
+                background-color: var(--text-color);
+                border-radius: 3px;
+                transition: all 0.3s ease;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+        }
+    </style>
+</body>
 </html>
