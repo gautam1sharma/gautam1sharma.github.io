@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if the secret word is typed
     if (keySequence === 'genshin') {
+      // Check if there's a saved position and get current position if not
+      const savedPosition = localStorage.getItem('genshinScrollPosition') || 0;
+      
+      // Save current position before redirecting
+      localStorage.setItem('genshinLastVisit', Date.now());
+      
       // Redirect to the easter egg page using absolute path from root
       window.location.href = '/hidden/Genshin Impact_ A full story.html';
       console.log("Genshin Easter Egg activated!"); // Debug logging
