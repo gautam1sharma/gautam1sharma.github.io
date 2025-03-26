@@ -10,12 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Easter Egg - Genshin Impact Lore
   let keySequence = '';
   document.addEventListener('keydown', (e) => {
+    console.log("Key pressed:", e.key.toLowerCase());
     keySequence += e.key.toLowerCase();
     
     // Only keep the last 7 characters (max length of "genshin")
     if (keySequence.length > 7) {
       keySequence = keySequence.slice(keySequence.length - 7);
     }
+    
+    console.log("Current typed sequence:", keySequence);
     
     // Check if the secret word is typed
     if (keySequence === 'genshin') {
