@@ -7,6 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.querySelector('.nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
   
+  // Easter Egg - Genshin Impact Lore
+  let keySequence = '';
+  document.addEventListener('keydown', (e) => {
+    keySequence += e.key.toLowerCase();
+    
+    // Only keep the last 7 characters (max length of "genshin")
+    if (keySequence.length > 7) {
+      keySequence = keySequence.slice(keySequence.length - 7);
+    }
+    
+    // Check if the secret word is typed
+    if (keySequence === 'genshin') {
+      // Redirect to the easter egg page
+      window.location.href = './hidden/Genshin Impact_ A full story.html';
+    }
+  });
+  
   // Scroll event for header
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
