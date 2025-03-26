@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Check if the secret word is typed
     if (keySequence === 'genshin') {
-      // Redirect to the easter egg page
-      window.location.href = './hidden/Genshin Impact_ A full story.html';
+      // Redirect to the easter egg page using absolute path from root
+      window.location.href = '/hidden/Genshin Impact_ A full story.html';
+      console.log("Genshin Easter Egg activated!"); // Debug logging
     }
   });
   
