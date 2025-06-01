@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -26,20 +26,22 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">Gautam Sharma</a>
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li>
-                        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                        <li>
+                            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                                <i class="fas fa-moon"></i> <!-- Icon will be updated by JS -->
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -52,16 +54,16 @@
                 <p class="hero-subtitle animate-on-scroll">Hello, I'm</p>
                 <h1 class="hero-title animate-on-scroll">Gautam Sharma</h1>
                 <p class="hero-description animate-on-scroll">
-                    A passionate developer focused on creating elegant solutions to complex problems.
-                    I share my knowledge through code examples and problem-solving techniques.
+                    A passionate developer focused on creating elegant and efficient solutions to complex problems.
+                    Welcome to my personal space where I share my journey, projects, and insights.
                 </p>
                 <div class="hero-buttons animate-on-scroll">
-                    <a href="#projects" class="btn">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    <a href="#projects" class="btn">Explore My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
                 </div>
             </div>
         </div>
-        <div class="hero-bg"></div>
+        <div class="hero-bg"></div> <!-- This div is for the animated background shape -->
     </section>
 
     <!-- About Section -->
@@ -92,6 +94,7 @@
                         <span class="skill-tag">Web Development</span>
                     </div>
                 </div>
+                <!-- TODO: Replace this placeholder with a personal photo or a more designed graphic. -->
                 <div class="animate-on-scroll">
                     <div style="background-color: var(--accent-color); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">
                         <i class="fas fa-user-circle" style="font-size: 8rem; margin-right: 1rem;"></i>
@@ -119,9 +122,10 @@
             
             <div class="projects-grid">
                 <!-- Project 1 -->
+                <!-- TODO: Replace this icon with an actual project screenshot or relevant visual. -->
                 <div class="project-card web animate-on-scroll">
-                    <div style="height: 200px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-globe" style="font-size: 4rem; color: white;"></i>
+                    <div class="project-image"> <!-- Placeholder for actual image or icon -->
+                        <i class="fas fa-globe" style="font-size: 4rem; color: white; display: block; text-align: center; padding-top: calc(100px - 2rem); "></i> <!-- Centered icon as example -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Personal Website</h3>
@@ -138,9 +142,10 @@
                 </div>
                 
                 <!-- Project 2 -->
+                <!-- TODO: Replace this icon with an actual project screenshot or relevant visual. -->
                 <div class="project-card algorithm animate-on-scroll">
-                    <div style="height: 200px; background-color: var(--secondary-color); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-code" style="font-size: 4rem; color: white;"></i>
+                    <div class="project-image">  <!-- Placeholder for actual image or icon -->
+                        <i class="fas fa-code" style="font-size: 4rem; color: white; display: block; text-align: center; padding-top: calc(100px - 2rem); "></i> <!-- Centered icon as example -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Algorithm Visualizer</h3>
@@ -157,9 +162,10 @@
                 </div>
                 
                 <!-- Project 3 -->
+                <!-- TODO: Replace this icon with an actual project screenshot or relevant visual. -->
                 <div class="project-card software animate-on-scroll">
-                    <div style="height: 200px; background-color: var(--accent-color); display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-laptop-code" style="font-size: 4rem; color: white;"></i>
+                    <div class="project-image">  <!-- Placeholder for actual image or icon -->
+                        <i class="fas fa-laptop-code" style="font-size: 4rem; color: white; display: block; text-align: center; padding-top: calc(100px - 2rem); "></i> <!-- Centered icon as example -->
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Problem Solver App</h3>
@@ -284,10 +290,10 @@
                         A passionate developer sharing solutions to complex problems.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="far fa-envelope"></i></a>
+                        <a href="#github-profile-url" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#linkedin-profile-url" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#twitter-profile-url" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#email-address" class="social-icon"><i class="far fa-envelope"></i></a>
                     </div>
                 </div>
                 
@@ -306,9 +312,9 @@
                     <h3>Resources</h3>
                     <ul class="footer-links">
                         <li class="footer-link"><a href="./introduction/about.html">About Page</a></li>
-                        <li class="footer-link"><a href="./blog/index.html">Blog</a></li>
+                        <li class="footer-link"><a href="./blog/index.html">Blog</a> <!-- TODO: Create blog page or remove link --></li>
                         <li class="footer-link"><a href="./algorithms/index.html">Algorithms</a></li>
-                        <li class="footer-link"><a href="./data-structures/index.html">Data Structures</a></li>
+                        <li class="footer-link"><a href="./data-structures/index.html">Data Structures</a> <!-- TODO: Create data structures page or remove link --></li>
                     </ul>
                 </div>
             </div>
@@ -326,6 +332,11 @@
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="scroll-to-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     
     <!-- Hamburger menu HTML -->
     <style>

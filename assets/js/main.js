@@ -34,15 +34,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Scroll event for header
+  // Scroll event for header & Scroll-to-top button visibility
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  const scrollThreshold = window.innerHeight * 0.8; // Show button after scrolling 80% of viewport height
+
   window.addEventListener('scroll', () => {
+    // Header scroll effect
     if (window.scrollY > 50) {
       header.classList.add('header-scrolled');
     } else {
       header.classList.remove('header-scrolled');
     }
+
+    // Scroll-to-top button visibility
+    if (scrollToTopBtn) {
+      if (window.scrollY > scrollThreshold) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    }
   });
   
+  // Scroll-to-top button click event
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
   // Mobile menu toggle
   hamburger?.addEventListener('click', () => {
     navMenu.classList.toggle('active');
@@ -167,9 +190,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroBg = document.querySelector('.hero-bg');
   
   if (heroSection && heroBg) {
+    let initialTransform = heroBg.style.transform; // Get initial transform from CSS (if any, for pulse)
     window.addEventListener('scroll', () => {
       const scrollValue = window.scrollY;
-      heroBg.style.transform = `translateY(${-50 + scrollValue * 0.05}%) translateX(${-10 + scrollValue * 0.02}%)`;
+      // Preserve existing scale transform from pulse animation, only modify translate
+      // The subtlePulse animation in CSS handles the scale. We only add Y-scroll parallax here.
+      // The X-scroll parallax was very minor and can be removed for simplicity with the new bg.
+      heroBg.style.transform = `translateY(${-50 + scrollValue * 0.05}%)`;
     });
   }
   
@@ -197,18 +224,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const themeIcon = themeToggle.querySelector('i');
   
-  // Check for saved theme preference
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  // Check for saved theme preference, default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
+  // Set icon based on the theme (sun for dark, moon for light)
   themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
   
   // Handle theme toggle click
   themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
+    let currentTheme = document.documentElement.getAttribute('data-theme');
+    if (!currentTheme) {
+        currentTheme = 'dark'; // Default to dark if somehow unset
+    }
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
+    // Add class to trigger icon animation
+    themeIcon.classList.add('is-switching');
+
     document.documentElement.setAttribute('data-theme', newTheme);
-    themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     localStorage.setItem('theme', newTheme);
+
+    // Update icon after a short delay to allow old icon to animate out partly
+    // and new icon to be set before its part of animation begins
+    setTimeout(() => {
+        themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        // Remove the animation class so it can be re-added on next click
+        // Need a slightly longer delay for this than the animation itself to ensure it's clean
+        setTimeout(() => {
+            themeIcon.classList.remove('is-switching');
+        }, 100); // Animation is 0.7s, remove class after it's definitely done.
+                  // Shortened to 100ms to make it snappier for next state.
+                  // The key is new icon is set, then animation class removed.
+    }, 250); // Halfway through a 0.6-0.7s animation is a good swap point.
   });
 });
